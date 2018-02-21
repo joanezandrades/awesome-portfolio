@@ -1,0 +1,31 @@
+{
+  "name": "Awesome Portfólio",
+  "version": "2.1.0",
+  "description": "Melhorias no design da homepage e da seção de contato, melhorias no design dos título das seções(estão muito chamativos), criar função no functions.php que retorne os botões de compartilhamento",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joanez93/theme-ap2.git"
+  },
+  "keywords": [
+    "wordpress",
+    "responsive",
+    "portfolio"
+  ],
+  "author": "JoanezAndrades",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joanez93/theme-ap2/issues"
+  },
+  "homepage": "https://github.com/joanez93/theme-ap2#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.1.0",
+    "grunt-contrib-cssmin": "^2.2.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-copy": "^0.1.0"
+  }
+}

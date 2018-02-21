@@ -1,0 +1,175 @@
+// --------------------------------------------------------------
+// # Configs.sass
+// # versão 1.0
+// # descriçao: configurações globais e padrões do site
+// --------------------------------------------------------------
+
+// --------------------------------------------------------------
+// # Media Queryes
+// --------------------------------------------------------------
+$information-phone: "only screen and (max-width: 420px)" //Smartphone
+$information-tablet: "only screen and (min-width: 768px)" //Tablet
+$information-desktop: "only screen and (min-width: 1280px)" //Desktop
+
+
+// --------------------------------------------------------------
+// # Configurações de fontes
+// --------------------------------------------------------------
+$big-title:         4.2em
+$medium-title:      3.2em
+$small-title:       2.7em
+
+$big-text:          2.4em
+$medium-text:       2.2em
+$small-text:        2.0em
+
+$big-tag:           1.8em
+$medium-tag:        1.6em
+$small-tag:			1.4em
+
+// --------------------------------------------------------------
+// # Paleta de cores
+// --------------------------------------------------------------
+$color-neuter:              #FFFFFF
+$color-neuter-secondary:    #F4F4F4
+$color-border:				#ECECEC
+
+$color-primary:          	#1D2433
+$color-secondary:        	#252E3A
+$color-accent:              #FF4229
+
+$color-text:                #676767
+$color-text-secondary:      #33363E
+
+$color-menu:				#95989A
+
+// - Familias
+$font-maven:        	'Maven Pro', sans-serif
+$font-roboto:	    	'Roboto', sans-serif
+
+// - Weight font
+$font-bold:             900
+$font-regular:          500
+$font-light:            300
+
+
+h1,h2,h3,h4,h5,h6,
+	font-family: $font-roboto
+
+p,span,ul,ol,li,a, label,input,textarea, dl, dt, figcaption
+	font-family: $font-roboto
+
+
+// --------------------------------------------------------------
+// # Transitions
+// --------------------------------------------------------------
+$transition-basic:  .2s linear
+
+$trans-time-default: 		cubic-bezier(.22,1.61,.65,1)
+$trans-duration-default: 	1s
+$trans-delay-default:		.37s
+
+// --------------------------------------------------------------
+// # Backgrounds
+// --------------------------------------------------------------
+$bg-cover-loja: 		url('../../img/background.jpeg') no-repeat center center fixed
+$bg-cover-contato: 		url('../../img/background-contato.jpeg') no-repeat center center fixed
+
+$bg-linear:     		linear-gradient(170deg, $color-primary 68%, $color-neuter 18%)
+$bg-linear-invert: 		linear-gradient(170deg, $color-neuter 68%, $color-primary 18%)
+
+// --------------------------------------------------------------
+// # Containers e classes globais
+// --------------------------------------------------------------
+.container_one
+	display: inline-block
+	position: relative
+	@media #{$information-phone}
+		width: calc(100% - 20px)
+		margin-left: 10px
+		margin-right: 10px
+
+	@media #{$information-tablet}
+		width: calc(100% - 100px)
+		margin-left: 50px
+		margin-right: 50px
+
+
+	@media #{$information-desktop}
+		width: calc(100% - 200px)
+		margin: 0 100px
+
+
+
+// --------------------------------------------------------------
+// # Start Website style
+// --------------------------------------------------------------
+html
+	@media #{$information-phone}
+		background: #ffffff
+		overflow-x: hidden
+	
+	@media #{$information-desktop}
+		background: #ffffff
+		font-size: 62.5%
+		overflow-x: hidden
+
+		b
+			font-weight: 500
+		
+
+a, a:hover
+	text-decoration: none
+	color: auto
+
+body
+	font-size: 10px
+
+// --------------------------------------------------------------
+// # Variaveis de tamanhos
+// --------------------------------------------------------------
+
+// - Default sizes
+$defaultWidth: 		100%
+$defaultHeight:		100%
+
+
+// - Main menu desktop
+$mainHeaderHeight: 			90px
+$mainHeaderCompactHeight: 	80px
+
+// - Logotipo sizeq
+$logoWidthSize: 		150px
+$logoHeightSize:		80px
+
+$logoCompactWidth:		120px
+$logoCompactHeight:		50px
+
+// - Box Shadow
+$shadowDefault: 0 3px 6px $color-neuter-secondary
+
+// - Buttons
+$bigButtonWidth: 	190px
+$bigButtonHeight:	60px
+
+// - Border radius
+$borderRadius: 5px
+
+// - Sections
+$secServicosHeight: 	1340px
+
+// - Header section
+$headerSectionWidth: 	600px
+$headerSectionHeight:	200px
+
+// - Posts
+$headerPostWidth:		100%
+$headerPostHeight:		480px
+
+$postBodyWidth:			960px
+
+$postTextWidth:			810px
+
+$postBigThumbWidth:		960px
+$postBigThumbHeight:	480px
+
