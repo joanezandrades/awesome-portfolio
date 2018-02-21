@@ -1,27 +1,89 @@
-<?php 
-// 
-
+<?php
+/**
+ * Awesome Portfolio template_tags;
+ * Arquivo que faz todos os hooks de seções, hooks de informações de contato entre outras funções isoladas. * 
+*/
 ?>
 
-<?php 
+<?php
+
 /**
- * @func 
- * */ 
+ * Funções complementares que serão usadas em vários locais do sistema. Tais como: rendenizar informações de contato, redes sociais, titulo da aba etc..
+*/
 function make_title(){
-    if(is_home()) {
-        return bloginfo('name') . ' | ' . bloginfo( 'description' );
+    /**
+     * @desc: Cria os títulos das abas baseado no tipo de página aberta
+    * */
+    if( is_home() ) {
+        return bloginfo('name ') . ' | ' . bloginfo( ' description' );
     }
     else{
         return bloginfo('name ') . ' | ' . the_title();
     }
 }
 
-/***
- * @func
- * -> Main Header
- */
-function main_header() {
+function render_network_links() {
+    /**
+     * @desc: Função especializada em rendenizar os links das redes sociais cadastradas
+    */
 
+    $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
+    $pageID = $page_contato->ID;
+
+    // Links
+    $linkFacebook   = get_post_meta( $pageID, 'cb_contato_facebook', true );
+    $linkInstagram  = get_post_meta( $pageID, 'cb_contato_instagram', true );
+    $linkTwitter    = get_post_meta( $pageID, 'cb_contato_twitter', true );
+    $linkGithub     = get_post_meta( $pageID, 'cb_contato_github', true );
+    $linkcodepen    = get_post_meta( $pageID, 'cb_contato_codepen', true );
+    ?>
+    <!-- Verifico se os links não estão vazios e mando escrever -->
+    <?php if( $linkFacebook ): ?> 
+        <a class="link-social" href="<?php echo $linkFacebook ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+    <?php endif; ?>
+
+    <?php if( $linkTwitter ): ?>
+        <a class="link-social" href="<?php echo $linkTwitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+    <?php endif; ?>
+
+    <?php if( $linkInstagram ): ?>
+        <a class="link-social" href="<?php echo $linkInstagram ?>" target="_blank"><i class="fa fa-instagram"></i></a>
+    <?php endif; ?>
+
+    <?php if( $linkGithub ): ?>
+        <a class="link-social" href="<?php echo $linkGithub ?>" target="_blank"><i class="fa fa-github"></i></a>
+    <?php endif; ?>
+
+    <?php if( $linkcodepen ): ?>
+        <a class="link-social" href="<?php echo $linkcodepen ?>" target="_blank"><i class="fa fa-codepen"></i></a>
+    <?php endif;
+}
+
+function render_social_share () {
+    /**
+     * @desc: Retornar os botões de compartilhamento
+    */
+    ?>
+    <div class="social-bar">
+        <i class="icon fa fa-twitter">
+            <a  class="twitter-share-button link-share" href="https://twitter.com/intent/tweet?original_referer=  <?php echo the_permalink(); ?>" data-show-count="false"></a>
+        </i>
+
+        <i class="icon fa fa-facebook"  >
+            <a class="link-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u= <?php echo the_permalink(); ?>"></a>
+        </i>
+    </div>
+    <?php 
+}
+
+/**
+ * Funções que criaram as seções da homepage.
+*/
+function main_header() {
+    /**
+     * @func main_header()
+     * @desc: retorna a criação do header do site, diferenciado conforme os tipos de páginas em que é chamado
+    */
     global $post;
 
     $custom_logo_id = get_theme_mod( 'custom-logo' );
@@ -32,6 +94,7 @@ function main_header() {
     <header id="" class="main-header">
         <i id="open-menu" class="fa fa-bars hide-elem"></i>
         <i id="close-menu" class="fa fa-times hide-elem"></i>
+
         <div id="menu-content" class="menu-content container-fluid">
             <div class="row">
                 <div class="col-6 col-xl-3">
@@ -40,48 +103,17 @@ function main_header() {
 
                 <div class="wrapper_menu col-6 col-xl-7">                    
                     <?php
-                        $args = array(
+                        $args_menu = array(
                             'menu'      => 'awp-primary',
                             'menu_class'    => 'main-menu',
                             'echo'          => true,
                         );
-                        wp_nav_menu( $args );
+                        wp_nav_menu( $args_menu );
                     ?>
                 </div> <!-- /End menu -->
                 
                 <div class="social-network col-xl-2">
-                    <?php 
-                    $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
-
-                    $pageID = $page_contato->ID;
-
-                    // Links
-                    $linkFacebook   = get_post_meta( $pageID, 'cb_contato_facebook', true );
-                    $linkInstagram  = get_post_meta( $pageID, 'cb_contato_instagram', true );
-                    $linkTwitter    = get_post_meta( $pageID, 'cb_contato_twitter', true );
-                    $linkGithub     = get_post_meta( $pageID, 'cb_contato_github', true );
-                    $linkcodepen    = get_post_meta( $pageID, 'cb_contato_codepen', true );
-                    ?>
-                    <!-- Verifico se os links não estão vazios e mando escrever -->
-                    <?php if( $linkFacebook ): ?> 
-                        <a class="link-social" href="<?php echo $linkFacebook ?>" target="_blank"><i class="fa fa-facebook"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkTwitter ): ?>
-                        <a class="link-social" href="<?php echo $linkTwitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkInstagram ): ?>
-                        <a class="link-social" href="<?php echo $linkInstagram ?>" target="_blank"><i class="fa fa-instagram"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkGithub ): ?>
-                        <a class="link-social" href="<?php echo $linkGithub ?>" target="_blank"><i class="fa fa-github"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkcodepen ): ?>
-                        <a class="link-social" href="<?php echo $linkcodepen ?>" target="_blank"><i class="fa fa-codepen"></i></a>
-                    <?php endif; ?>
+                    <?php render_network_links(); ?>
                 </div> <!-- /End social network -->
             </div>
         </div>
@@ -112,38 +144,7 @@ function main_header() {
                 </div> <!-- /End logo -->
                 <div class="col-xl-7"></div>
                 <div class="social-network col-xl-2">
-                    <?php 
-                    $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
-
-                    $pageID = $page_contato->ID;
-
-                    // Links
-                    $linkFacebook   = get_post_meta( $pageID, 'cb_contato_facebook', true );
-                    $linkInstagram  = get_post_meta( $pageID, 'cb_contato_instagram', true );
-                    $linkTwitter    = get_post_meta( $pageID, 'cb_contato_twitter', true );
-                    $linkGithub     = get_post_meta( $pageID, 'cb_contato_github', true );
-                    $linkcodepen    = get_post_meta( $pageID, 'cb_contato_codepen', true );
-                    ?>
-                    <!-- Verifico se os links não estão vazios e mando escrever -->
-                    <?php if( $linkFacebook ): ?> 
-                        <a class="link-social" href="<?php echo $linkFacebook ?>" target="_blank"><i class="fa fa-facebook"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkTwitter ): ?>
-                        <a class="link-social" href="<?php echo $linkTwitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkInstagram ): ?>
-                        <a class="link-social" href="<?php echo $linkInstagram ?>" target="_blank"><i class="fa fa-instagram"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkGithub ): ?>
-                        <a class="link-social" href="<?php echo $linkGithub ?>" target="_blank"><i class="fa fa-github"></i></a>
-                    <?php endif; ?>
-
-                    <?php if( $linkcodepen ): ?>
-                        <a class="link-social" href="<?php echo $linkcodepen ?>" target="_blank"><i class="fa fa-codepen"></i></a>
-                    <?php endif; ?>
+                    <?php render_network_links(); ?>
                 </div> <!-- /End social network -->
             </div>
         </div>
@@ -152,169 +153,27 @@ function main_header() {
     endif;
 }
 
-/***
- * @func 
- * -> Informações de contato
- * Render do html para obter as informações de contato registradas
- */
-function render_address_html ( $post ) {
-
-    $metaID = get_post_meta( $post->ID );
-
-    $metaAddress    = $metaID['cb_meta_address_id'][0];
-    $metaMap        = $metaID['cb_meta_map_id'][0];
-    $metaPhone      = $metaID['cb_meta_phone_id'][0];
-    $metaEmail      = $metaID['cb_meta_email_id'][0];
-    ?>
-    <?php 
-        if ($metaAddress != '' ) {
-    ?>
-
-        <li class="item-info">
-            <span class="text-desc">endereço</span>
-            <i class="icon fa fa-map-marker"></i>
-            <span class="text-info"><?php echo $metaAddress; ?></span>
-        </li>
-
-    <?php 
-        } else {
-            false;
-        }
-    ?>
-
-    <?php 
-        if ($metaMap != '' ) {
-    ?>
-
-        <li class="item-info">
-            <span class="text-desc">Mapa</span>
-            <i class="icon fa fa-map"></i>
-            <span class="text-info"><?php echo $metaMap; ?></span>
-        </li>
-
-    <?php 
-        } else {
-            false;
-        }
-    ?>
-
-    <?php 
-        if ($metaPhone != '' ) {
-    ?>
-
-        <li class="item-info">
-            <span class="text-desc">Telefone</span>
-            <i class="icon fa fa-mobile-phone"></i>
-            <span class="text-info"><?php echo $metaPhone; ?></span>
-        </li>
-
-    <?php 
-        } else {
-            false;
-        }
-    ?>
-
-    <?php 
-        if ($metaEmail != '' ) {
-    ?>
-
-        <li class="item-info">
-            <span class="text-desc">E-mail</span>
-            <i class="icon fa fa-envelope"></i>
-            <span class="text-info"><?php echo $metaEmail; ?></span>
-        </li>
-
-    <?php 
-        } else {
-            false;
-        }
-    ?>
-
-    <?php
-}
-
-/**
- * Rendeniza as redes sociais cadastradas pelo administrador
- * 
-*/
-function render_social_network() {
-
-    $linkFacebook   = get_post_meta( $pageID, 'cb_contato_facebook', true );
-    $linkTwitter    = get_post_meta( $pageID, 'cb_contato_twitter', true );
-    $linkInstagram  = get_post_meta( $pageID, 'cb_contato_instagram', true );
-    $linkGithub     = get_post_meta( $pageID, 'cb_contato_github', true );
-    $linkcodepen    = get_post_meta( $pageID, 'cb_contato_codepen', true );
-    ?>
-
-    <!-- Verifico se os links não estão vazios e mando escrever -->
-    <?php if( $linkFacebook ): ?> 
-        <a class="link-social" href="<?php echo $linkFacebook ?>" target="_blank"><i class="fa fa-facebook"></i></a>
-    <?php endif; ?>
-
-    <?php if( $linkTwitter ): ?>
-        <a class="link-social" href="<?php echo $linkTwitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
-    <?php endif; ?>
-
-    <?php if( $linkInstagram ): ?>
-        <a class="link-social" href="<?php echo $linkInstagram ?>" target="_blank"><i class="fa fa-instagram"></i></a>
-    <?php endif; ?>
-
-    <?php if( $linkGithub ): ?>
-        <a class="link-social" href="<?php echo $linkGithub ?>" target="_blank"><i class="fa fa-github"></i></a>
-    <?php endif; ?>
-
-    <?php if( $linkcodepen ): ?>
-        <a class="link-social" href="<?php echo $linkcodepen ?>" target="_blank"><i class="fa fa-codepen"></i></a>
-    <?php endif; ?>
-
-    <?php
-}
-
-/*
-* render_social_share()
-*   Retorna o html equivalente aos botões de compartilhamento
-*/ 
-function render_social_share () {
-
-    ?>
-
-    <div class="social-bar">
-        <i class="icon fa fa-twitter">
-            <a  class="twitter-share-button link-share" href="https://twitter.com/intent/tweet?original_referer=  <?php echo the_permalink(); ?>" data-show-count="false"></a>
-        </i>
-
-        <i class="icon fa fa-facebook"  >
-            <a class="link-share" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u= <?php echo the_permalink(); ?>"></a>
-        </i>
-    </div>
-
-    <?php 
-}
-
-/** 
- * Hook Homepage - Chamada para o slider da homepage
- * 
- * @post-type: Loja, projetos, 
-* */ 
-function hook_homepage() {
+function get_homepage() {
+    /** 
+     * get_homepage() - rendeniza a homepage de destaques do site
+    * */ 
     
     global $post;
 
-    $args_homepage = array(
+    $args_blog = array(
         'post_type'         => 'post',
-        'category'          => 'destaque',
         'category_name'     => 'destaque',
-        'numberposts'       => 4,
+        'posts_per_page '   => 4,
         'orderby'           => 'date',
         'order'             => 'DESC',
         'post_status'       => 'publish'
     );
 
-    $homepage_posts = new WP_Query( $args_homepage );
+    $posts_blog = new WP_Query( $args_blog );
     
-    if( $homepage_posts->have_posts() ):
-        while( $homepage_posts->have_posts() ):
-            $homepage_posts->the_post();
+    if( $posts_blog->have_posts() ):
+        while( $posts_blog->have_posts() ):
+            $posts_blog->the_post();
     ?>
 
     <div class="content-post">
@@ -323,9 +182,7 @@ function hook_homepage() {
             <div class="excerpt">
                 <?php the_excerpt() ?>
             </div>
-            <button class="link-post"><a href="<?php the_permalink() ?>">saiba mais</a></button>
         </div>
-
         <div class="half-page col-xl-6">
             <?php the_post_thumbnail( 'full' ) ?>
         </div>
@@ -360,23 +217,27 @@ function hook_homepage() {
     endif;
 }
 
-/** 
- * Hook Serviços - Chamada para os serviços cadastrados
- * 
- * @post-type: servicos 
-* */
-function hook_services() {
-    $page_servicos = get_page_by_title( 'servicos', OBJECT, 'page' );
-    
-    $pageID = $page_servicos->ID;
-    $pageTitle = $page_servicos->post_title;
-    $pageSubtitle = $page_servicos->post_content;
+function get_services() {
+    /** 
+     * get_services() - Faz a chamada de toda seção de serviços da homepage
+     * inclusive, busca pela página serviços para desenhar o cabeçalho da seção.     * 
+    */
+    $page_services = get_page_by_title( 'servicos', OBJECT, 'page' );
+    $pageID = $page_services->ID;
+    $pageTitle = $page_services->post_title;
+    $pageSubtitle = $page_services->post_content;
 
+    if( $page_services ): 
     ?>
-    <header class="container sct-header">
-        <h1 class="sct-title"><?php echo $pageTitle; ?></h1>
-        <p class="sct-subtitle"><?php echo $pageSubtitle; ?></p>
-    </header>
+        <header class="container sct-header">
+            <h1 class="sct-title"><?php echo $pageTitle; ?></h1>
+            <p class="sct-subtitle"><?php echo $pageSubtitle; ?></p>
+        </header>
+    <?php else: ?>
+        <h1 class="title">Crie uma página de serviços para configurar o título e subtitlo da seção.</h1>
+    <?php endif; ?>
+
+    <!-- Conteúdo da seção -->
     <div class="container">
         
         <div class="services-wrap slider-services">
@@ -385,13 +246,15 @@ function hook_services() {
 
             $args_services = array(
                 'post_type'         => 'servicos',
-                'posts_per_page'    => 6
+                'posts_per_page'    => 6,
+                'post_status'       => 'publish'
             );
 
-            $getServices = get_posts( $args_services );
+            $getServices = new WP_query( $args_services );
 
-            if( $getServices ) :
-                foreach( $getServices as $post ) : 
+            if( $getServices->have_posts() ) :
+                while( $getServices->have_posts() ) : 
+                    $getServices->the_post();
             ?>           
             
             <article class="col-xl-10 service-item">
@@ -420,7 +283,7 @@ function hook_services() {
             </article>
 
             <?php
-                    endforeach;
+                    endwhile;
                 endif;
             ?>
         </div>
@@ -636,13 +499,13 @@ function hook_contato(){
 
                 <div class="social-network">
                     <span class="label-desc">Redes Sociais</span>
-                    <?php render_social_network() ?>
+                    <?php render_network_links() ?>
                 </div>
             </div><!-- /End wrap-contact -->
         </div>
 
         <footer class="mobile-social">
-            <?php render_social_network() ?>
+            <?php render_network_links() ?>
         </footer>
     </div>
 
