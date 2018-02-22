@@ -1,195 +1,19 @@
 <?php 
 /** 
-*   Criação de Meta-Box para registro de informações adicionais.
-*       @link https://developer.wordpress.org/reference/functions/add_meta_box/
-*/
-
-/**
- * Registro de informações adicionais nas paginas das seções que configurão a homepage;
- * @post-type: secoes
- * -> callback
- * */ 
-function callback_subtitle_secoes( $post ){
-    $metaID = get_post_meta( $post->ID );
-
-    $subtitleSecao    = $metaID['cb_subtitle_secao'][0];
-    ?>
-
-    <div class="">
-
-        <div class="input_wrapper">
-            <input id="cb_subtitle_secao" class="" type="text" name="cb_subtitle_secao" value="<?php $subtitleSecao ?>">
-        </div>
-
-    </div>
-
-    <?php
-}
-
-/**
- * Registero de informações adicionais nas páginas das seções que configurão a homepage;
- * @post-type: secoes
- * -> save
-*/
-function save_subtitle_secao( $post_id ){
-    if( isset( $_POST['cb_subtitle_secao'] ) ){
-        update_post_meta( $post_id, 'cb_subtitle_secao', sanitize_text_field( $_POST['cb_subtitle_secao'] ) );
-    } else {
-        return false;
-    }
-}
-add_action('save_post', 'save_subtitle_secao');
-
-/**
- * Registro de informações adicionais nas páginas das seções que configurão a homepage;
- * @post-type: secoes
- * -> register
- * */ 
-function reg_subtitle_secoes(){
-
-    add_meta_box(
-        'subtitle-secao',
-        'Adicione um subtitulo',
-        'callback_subtitle_secoes',
-        'secoes',
-        'advanced',
-        'default'
-    );
-}
-add_action('add_meta_boxes', 'reg_subtitle_secoes');
-
-//---------------------------------------- /End -----------------------------------------//
-
-/**
- * Registro de informações adicionais no projetos;
- * @post-type: projetos
- * -> callback
-*/
-function callback_link_project( $post ) {
-    $metaID = get_post_meta( $post->ID );
-
-    $linkProject = $metaID['cb_link_project'][0];
-    ?>
-
-    <div class="">
-        <label for="cb_link_project">Link do projeto:</label>
-        <input id="cb_link_project" class="" type="text" name="cb_link_project" value="<?php $linkProject ?>">
-    </div>
-
-    <?php 
-}
-
-/**
- * Registro de informações adicionais no projetos;
- * @post-type: projetos
- * -> save
-*/
-function save_link_project( $post_id ) {
-    if( isset( $_POST['cb_link_project'] ) ) {
-        update_post_meta( $post_id, 'cb_link_project', sanitize_text_field( $_POST['cb_link_project'] ) );
-    }
-    else{
-        return 'Link inválido!';
-    }
-}
-add_action( 'save_post', 'save_link_project' );
-
-/**
- * Registro de informações adicionais no projetos;
- * @post-type: projetos
- * -> Register
+ *  Campos adicionais e registro de meta_box
+ *  cb_ = callback
+ *
+ * @link https://developer.wordpress.org/reference/functions/add_meta_box/
  */
-function reg_link_projects() {
-    add_meta_box(
-        'link-projects',
-        'Adicione o link deste projeto',
-        'callback_link_project',
-        'projetos',
-        'normal',
-        'default'
-    );
-}
-add_action( 'add_meta_boxes', 'reg_link_projects' );
-
-//---------------------------------------- /End -----------------------------------------//
-
-/*  
-* Registro de informações adicionais nos templates;
-* @post-type: templates
-* -> func callback
-*/
-function callback_templates( $post ) {
-    $metaID = get_post_meta( $post->ID );
-
-    $templateVersion        = $metaID['cb_tpl_version'][0];
-    $templatePrice          = $metaID['cb_tpl_price'][0];
-    $templateBgCustom       = $metaID['cb_tpl_bgcustom'][0];
-    ?>
-
-    <div class="cb_container">
-        <div class="input_wrapper">
-            <label for="cb_meta">Versão:</label>
-            <input id="cb_tpl_version" type="number" name="cb_tpl_version" value="<?= $metaVersion ?>">
-        </div>
-        <div class="input_wrapper">
-            <label for="cb_meta">Preço:</label>
-            <input id="cb_tpl_price" type="text" name="cb_tpl_price" value="<?= $metaPrice ?>">
-        </div>
-        <div class="input_wrapper">
-            <label for="cb_meta">Background:</label>
-            <input type="file" accept=".jpg, .png" name="cb_tpl_bgcustom" value="<?= $metaBgCustom ?>">
-        </div>
-    </div>
-
-    <?php
-}
-
-/*  
-* Registro de informações adicionais nos templates;
-* @post-type: templates
-* -> func save
-*/
-function save_templates_infos( $post_id ) {
-    if( isset( $_POST['cb_tpl_version'] ) ) {
-        update_post_meta( $post_id, 'cb_tpl_version', sanitize_text_field( $_POST['cb_tpl_version'] ) );
-    }
-    if( isset( $_POST['cb_tpl_price'] ) ) {
-        update_post_meta( $post_id, 'cb_tpl_price', sanitize_text_field( $_POST['cb_tpl_price'] ) );
-    }
-    if( isset( $_POST['cb_tpl_bgcustom'] ) ) {
-        update_post_meta( $post_id, 'cb_tpl_bgcustom', sanitize_text_field( $_POST['cb_tpl_bgcustom'] ) );
-    }
-}
-add_action( 'save_post', 'save_templates_infos' );
-
-
-/*  
-* Registro de informações adicionais nos templates;
-* @post-type: templates
-* -> func register
-*/
-function register_type_templates() {
-    add_meta_box(
-        'post-type-templates',
-        'Adicione informações do template',
-        'callback_templates',
-        'templates',
-        'normal',
-        'default'
-    );
-}
-add_action( 'add_meta_boxes', 'register_type_templates' );
-
-//---------------------------------------- /End -----------------------------------------//
 
 /**
- * Registro de informações adicionais de contato;
- * @post-type: page
- * @page-slug: contato
+ *  Registro de informações adicionais na página de contato;
+ *  post-type: page
+ *  page-slug: contato
  * 
- * -> callback
+ * @callback
  */ 
-function callback_infos_contato( $post ){
+function cb_inf_contact( $post ){
     $metaID = get_post_meta( $post->ID );
 
     $contatoTel         = $metaID['cb_contato_tel'][0];
@@ -201,36 +25,36 @@ function callback_infos_contato( $post ){
     $contatoCodepen     = $metaID['cb_contato_codepen'][0];
     ?>
 
-    <div class="cb_container">
+    <div class="container">
         <h3>Informações de contato</h3>
         <div class="input_wrapper">
             <label for="cb_contato_tel">Telefone:</label>
-            <input id="cb_contato_tel" class="" type="text" name="cb_contato_tel" value="<?php echo $contatoTel ?>">
+            <input id="cb_contato_tel" class="ipt-form" type="text" name="cb_contato_tel" value="<?php echo $contatoTel ?>">
         </div>
         <div class="input_wrapper">
             <label for="cb_contato_email">E-mail:</label>
-            <input id="cb_contato_email" class="" type="email" name="cb_contato_email" value="<?php echo $contatoEmail ?>">
+            <input id="cb_contato_email" class="ipt-form" type="email" name="cb_contato_email" value="<?php echo $contatoEmail ?>">
         </div>
         <h3 class="subtitle">Redes Sociais</h3>
         <div class="input_wrapper">
             <label for="cb_contato_facebook">Página/Perfil Facebook:</label>
-            <input id="cb_contato_facebook" class="" type="text" name="cb_contato_facebook" value="<?php echo $contatoFacebook ?>">
+            <input id="cb_contato_facebook" class="ipt-form" type="text" name="cb_contato_facebook" value="<?php echo $contatoFacebook ?>">
         </div>
         <div class="input_wrapper">
             <label for="cb_contato_twitter">Twitter:</label>
-            <input id="cb_contato_twitter" class="" type="text" name="cb_contato_twitter" value="<?php echo $contatoTwitter ?>">
+            <input id="cb_contato_twitter" class="ipt-form" type="text" name="cb_contato_twitter" value="<?php echo $contatoTwitter ?>">
         </div>
         <div class="input_wrapper">
             <label for="cb_contato_instagram">Instagram:</label>
-            <input type="text" id="cb_contato_instagram" class="" name="cb_contato_instagram" value="<?php echo $contatoInstagram ?>">
+            <input type="text" id="cb_contato_instagram" class="ipt-form" name="cb_contato_instagram" value="<?php echo $contatoInstagram ?>">
         </div>
         <div class="input_wrapper">
             <label for="cb_contato_github">Github:</label>
-            <input id="cb_contato_github" class="" type="text" name="cb_contato_github" value="<?php echo $contatoGithub ?>">
+            <input id="cb_contato_github" class="ipt-form" type="text" name="cb_contato_github" value="<?php echo $contatoGithub ?>">
         </div>
         <div class="input_wrapper">
             <label for="cb_contato_codepen">Codepen:</label>
-            <input id="cb_contato_codepen" class="" name="cb_contato_codepen" type="text" value="<?php echo $contatoCodepen ?>">
+            <input id="cb_contato_codepen" class="ipt-form" name="cb_contato_codepen" type="text" value="<?php echo $contatoCodepen ?>">
         </div>
     </div>
 
@@ -238,9 +62,9 @@ function callback_infos_contato( $post ){
 }
 
 /**
- * -> save
+ * @save
 */
-function save_infos_contato( $post_id ) {
+function save_contact( $post_id ) {
  
     if( isset( $_POST['cb_contato_tel'] ) ) {
         update_post_meta( $post_id, 'cb_contato_tel', sanitize_text_field( $_POST['cb_contato_tel'] ) );
@@ -270,17 +94,17 @@ function save_infos_contato( $post_id ) {
         update_post_meta( $post_id, 'cb_contato_codepen', sanitize_text_field( $_POST['cb_contato_codepen'] ) );
     }
 }
-add_action( 'save_post', 'save_infos_contato' );
+add_action( 'save_post', 'save_contact' );
 
 /**
- * -> register
- * */ 
+ * @register
+*/ 
 function reg_infos_contato () {
 
     add_meta_box(
         'meta-infos',
         'Adicione suas informações de contato',
-        'callback_infos_contato',
+        'cb_inf_contact',
         'page',
         'normal',
         'default'
@@ -291,13 +115,14 @@ add_action( 'add_meta_boxes', 'reg_infos_contato' );
 //---------------------------------------- /End -----------------------------------------//
 
 /** 
-* Registro de novos post-types específicos.
-* @link https://codex.wordpress.org/pt-br:Tipos_de_Posts_Personalizados
-*/
+ *  Posts personalizados
+ *
+ * @link https://codex.wordpress.org/pt-br:Tipos_de_Posts_Personalizados
+ */
 
 /*
-* Post type: Temas
-* @desc: tipo específico para adicionar novos temas que serão comercializados
+*   Post type: temas
+*   desc: Onde cada novo tema wordpress será postado.
 */ 
 add_action( 'init', 'temas' );
 function temas() {
@@ -330,8 +155,9 @@ function temas() {
 }
 
 /*
-* Post type: Serviços
-*/ 
+ *  Post type: Serviços
+ *  desc: Onde cada serviço oferecido pelo profissional deve ser postado.
+ */ 
 add_action( 'init', 'servicos' );
 function servicos() {
     $pluralName = 'Serviços';
@@ -361,9 +187,10 @@ function servicos() {
     register_post_type( 'servicos', $args_services );
 }
 
-/*
-* Post type: Portfólio
-*/ 
+/**
+ *  Post type: Portfólio
+ *  desc: Onde cada projeto deverá ser postado
+*/
 add_action( 'init', 'portfolio' );
 function portfolio() {
     $pluralName = 'Portfólio';
@@ -394,11 +221,12 @@ function portfolio() {
     register_post_type( 'portfolio', $args_portfolio );
 }
 
-/*
-*   Registro de categorias e tags relacionadas aos posts
-*       @link https://codex.wordpress.org/Function_Reference/register_taxonomy
+/**
+ *  Categorias para tipos de posts personalizados.
+ * 
+ * @link https://codex.wordpress.org/Function_Reference/register_taxonomy
 */
-$forCategoriesAndTags = array(
+$arr_types_posts = array(
     'temas',
     'servicos',
     'portfolio',
@@ -420,10 +248,12 @@ $argssCat = array(
     'hierarchical'  => true,
     'public'        => true
 );
-register_taxonomy('categorias', $forCategoriesAndTags, $argssCat);
+register_taxonomy('categorias', $arr_types_posts, $argssCat);
 
-/*
-* Registro de tags
+/**
+ *  Tags para tipos de posts personalizados.
+ * 
+ * @link https://codex.wordpress.org/Function_Reference/register_taxonomy
 */
 $nameTagsPlural     = 'Tags';
 $nameTagsSingular   = 'Tag';
@@ -440,27 +270,10 @@ $argsTags = array(
     'hierarchical'  => false,
     'public'        => true
 );
-register_taxonomy('tags', $forCategoriesAndTags, $argsTags);
+register_taxonomy('tags', $arr_types_posts, $argsTags);
 
 /**
-* Criando uma area de widgets
-*
-*/
-function widgets_novos_widgets_init() {
-
-    register_sidebar( array(
-        'name'              => 'Informacoes',
-        'id'                => 'contact-widget',
-        'before_widget'     => '<div>',
-        'after_widget'      => '</div>',
-        'before_title'      => '<h2>',
-        'after_title'       => '</h2>',
-    ) );
-}
-add_action( 'widgets_init', 'widgets_novos_widgets_init' );
-
-/**
-*    WP Enqueue stylesheet
+ *  Load stylesheets
 */
 if ( !function_exists( 'load_style_scripts' ) ) {
 
@@ -477,9 +290,8 @@ if ( !function_exists( 'load_style_scripts' ) ) {
     add_action( 'wp_enqueue_scripts', 'load_style_scripts' );
 }
 
-
 /**
-*    WP Enqueue Javascript
+ *  Load JS
 */
 if ( ! function_exists( 'load_scripts_js' ) ) {
 
