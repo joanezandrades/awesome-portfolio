@@ -77,7 +77,9 @@ function render_social_share () {
 }
 
 /**
- * Funções que criaram as seções da homepage.
+ * Getters de conteúdo para homepage
+ * @desc: Cada função verifica a existência uma página que correponda com sua respectiva seção na homepage.
+ * Cada função faz um WP_query em busca dos posts que corresponda sua seção.
 */
 function main_header() {
     /**
@@ -219,7 +221,7 @@ function get_homepage() {
 
 function get_services() {
     /** 
-     * get_services() - Faz a chamada de toda seção de serviços da homepage
+     * get_services() - Faz a construção da seção de serviços.
      * inclusive, busca pela página serviços para desenhar o cabeçalho da seção.     * 
     */
     $page_services = get_page_by_title( 'servicos', OBJECT, 'page' );
@@ -233,9 +235,13 @@ function get_services() {
             <h1 class="sct-title"><?php echo $pageTitle; ?></h1>
             <p class="sct-subtitle"><?php echo $pageSubtitle; ?></p>
         </header>
-    <?php else: ?>
-        <h1 class="title">Crie uma página de serviços para configurar o título e subtitlo da seção.</h1>
-    <?php endif; ?>
+    <?php 
+    else: 
+        if( is_user_logged_in() ) : ?>
+            <h1 class="title">Crie uma página de serviços para configurar o título e subtitlo da seção.</h1>
+    <?php   
+        endif;
+    endif;?>
 
     <!-- Conteúdo da seção -->
     <div class="container">
@@ -284,42 +290,59 @@ function get_services() {
 
             <?php
                     endwhile;
-                endif;
+                else:
             ?>
+                <h1 class="title">Nenhum serviço registrado.</h1>
+                <?php if( is_user_logged_in() ): ?>
+                    <span class="text">Você pode registrar seus serviços a partir do menu "Serviços", na sua admin dashboard.</span>
+                <?php endif; ?>
+            <?php endif; ?>       
         </div>
     </div>
     <?php 
 }
 
-/** 
- * Hook Portfólio - Chamada para a seção portfólio
- * 
- * @post-type: portfólio 
-* */
-function hook_portfolio() {
+function get_portfolio() {
+    /** 
+     * get_portfolio() - Faz a construção da seção de Portfólio da homepage.
+    * */
     $page_portfolio = get_page_by_title( 'portfolio', OBJECT, 'page' );
 
     $pageID = $page_portfolio->ID;
     $pageTitle = $page_portfolio->post_title;
     $pageSubtitle = $page_portfolio->post_content;
     
+    if( $page_portfolio ):
     ?>
-
-    <div class="portfolio-wrap">
-            
+        <header class="container sct-header">
+            <h1 class="sct-title"><?php echo $pageTitle; ?></h1>
+            <p class="sct-subtitle"><?php echo $pageSubtitle; ?></p>
+        </header>
+    <?php 
+    else :
+        if( is_user_logged_in() ) :
+    ?>
+            <h1 class="title">Crie uma página de serviços para configurar o título e subtitlo da seção.</h1>
+    <?php
+        endif;
+    endif;
+    ?>
+    <div class="portfolio-wrap"> 
         <?php
 
         global $post;
 
-        $args = array(
-            'post_type'     => 'portfolio',
-            'numberposts'   => 3
+        $args_portfolio = array(
+            'post_type'         => 'portfolio',
+            'posts_per_page'    => 3,
+            'post_status'       => 'publish'
         );
 
-        $portfolios = get_posts( $args );
+        $getPortfolios = new WP_Query( $args_portfolio );
 
-        if( $portfolios ) : 
-            foreach( $portfolios as $post ) :
+        if( $getPortfolios->have_posts() ) : 
+            while( $getPortfolios->have_posts() ) :
+                $getPortfolios->the_post();
         ?>
 
         <article class="portfolio-item row">
@@ -342,9 +365,9 @@ function hook_portfolio() {
 
 
         <?php
-                endforeach;
-                wp_reset_postdata();
-            endif;
+            endwhile;
+            wp_reset_postdata();
+        endif;
         ?>
 
     </div>
@@ -352,23 +375,33 @@ function hook_portfolio() {
     <?php
 }
 
-/**
- * Hook Contato - Verifica se existe uma page contato e imprime ela na seção
- * 
- * @post-type: page  
-*/
-function hook_contato(){
+function get_contato(){
+    /**
+     * get_contato() - Verifica se existe uma page contato e imprime ela na seção
+    */
    $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
 
     $pageID = $page_contato->ID;
     $page_title = $page_contato->post_name;
     $page_content = $page_contato->post_content;
+
+    if( $page_content ) :
+    ?>
+        <header class="header-contato" style="background-image: url(<?php echo get_template_directory_uri() . '/libs/img/background-contact.png' ?>)">
+            <h1 class="sct-title"><?php echo $page_title; ?></h1>
+            <p class="sct-subtitle"><?php echo $page_content; ?></p>
+        </header>
+    <?php 
+    else :
+        if( is_user_logged_in() ) :
+    ?>
+            <h1 class="title">Crie uma página de serviços para configurar o título e subtitlo da seção.</h1>
+    <?php 
+        endif;
+    endif;
     ?>
 
-    <header class="header-contato" style="background-image: url(<?php echo get_template_directory_uri() . '/libs/img/background-contact.png' ?>)">
-        <h1 class="sct-title"><?php echo $page_title; ?></h1>
-        <p class="sct-subtitle"><?php echo $page_content; ?></p>
-    </header>
+    <!-- Contact Content -->
     <div class="container">
         <!-- Mobile -->
         <div class="botoes-mobile">
@@ -511,7 +544,4 @@ function hook_contato(){
 
     <?php
 }
-
-
-
 ?>

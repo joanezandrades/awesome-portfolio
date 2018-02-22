@@ -31,11 +31,11 @@ get_header();
 </section> <!-- /.end servicos -->
 
 <section id="portfolio" class="bg-parallax" data-speed="0">
-    <?php //get_portfolio(); ?>
+    <?php get_portfolio(); ?>
 </section> <!-- /.end portfolio -->
 
 <section id="contato" class="bg-parallax" data-speed="0">
-    <?php //get_contato(); ?>
+    <?php get_contato(); ?>
 </section>
 
 <?php get_footer(); ?>
