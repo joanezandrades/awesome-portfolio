@@ -376,9 +376,7 @@ function get_contato(){
 
     if( $page_content ) :
     ?>
-        <header class="header-contato" style="background-image: url(<?php echo get_template_directory_uri() . '/libs/img/background-contact.png' ?>)">
-            <h1 class="sct-title"><?php echo $page_title; ?></h1>
-            <p class="sct-subtitle"><?php echo $page_content; ?></p>
+        <header class="header-contato" style="background-image: url(<?php the_post_thumbnail_url( 'full' ) ?>)">
         </header>
     <?php 
     else :
@@ -422,6 +420,10 @@ function get_contato(){
                 </header><!-- /End header Mobile -->
                 
                 <form action="" method="post" id="formulario" class="form row">
+                    <div class="description-for-desktop">
+                        <h3 class="title">Formulário de contato</h3>
+                        <p class="subtitle">Preencha o formulário que eu te retorno</p>
+                    </div>
                     <div class="wrapp-app-form phase-one active-phase col-xl-12 row">
                         <!-- Descrição dos campos -->
                         <div class="description-for-mob-app">

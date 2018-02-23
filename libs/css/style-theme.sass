@@ -2052,7 +2052,7 @@
 		background: $color-neuter-secondary
 		background-size: cover
 		width: 100%
-		min-height: 1100px
+		min-height: 100vh
 		position: relative
 
 		// header-contato
@@ -2062,7 +2062,7 @@
 			background-attachment: fixed
 
 			width: 100%
-			height: 530px
+			height: 440px
 
 			position: relative
 
@@ -2110,9 +2110,9 @@
 			padding: 15px 25px
 			border-radius: 5px
 
-			box-shadow: 0px 0px 10px $color-border
+			box-shadow: 0px 0px 5px $color-border
 
-			top: 280px
+			top: 140px
 			position: absolute
 
 		// Wrap-form
@@ -2140,13 +2140,36 @@
 				padding: 20px 25px
 				// display: none
 
+				.description-for-desktop
+					width: auto
+					height: 80px
+
+					display: flex
+					flex-wrap: wrap
+					align-content: center
+					border-bottom: 1px solid $color-neuter-secondary
+
+					.title
+						font-size: $small-text
+						font-weight: $font-bold
+						color: $color-text
+
+						display: block
+						width: 100%
+
+					.subtitle
+						font-size: $medium-tag
+						font-weight: $font-regular
+						color: $color-text
+
 
 				// Display na descrição dos campos
 				.description-for-mob-app
 					display: none
 
 				.wrap-input
-					margin: 20px auto
+					margin: 10px auto
+					padding: 0 6px
 
 					.name
 						font-size: $small-tag
@@ -2155,6 +2178,7 @@
 
 						display: block
 						margin: 10px 0
+						opacity: .8
 
 					.ipt-form,
 					.ipt-textarea
@@ -2177,22 +2201,27 @@
 					.ipt-textarea
 						height: auto
 
+				.next-phase
+					display: none
+
 				.bnt-send
-					background: $color-primary
+					background: none
 
 					width: 150px
-					height: 50px
+					height: 40px
 
-					font-size: $big-tag
-					color: $color-neuter
+					font-size: $medium-tag
+					font-weight: $font-bold
+					color: $color-primary
+					text-transform: uppercase
 
-					border: none
+					border: 2px solid $color-primary
 					border-radius: 3px
 
 					margin: 15px 0
 
-					right: 35px
-					bottom: 5px
+					right: 55px
+					bottom: 0px
 					position: absolute
 
 			// box sucess message
