@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Camada_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1200 1200" style="enable-background:new 0 0 1200 1200;" xml:space="preserve">
+	 viewBox="0 0 680 530" style="enable-background:new 0 0 680 530;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#EDEDED;}
 </style>
 <title>background-portfolio</title>
-<path class="st0" d="M599.5,0c331.4,0,434,268.6,434,600s-102.6,600-434,600H0V0H599.5z"/>
+<g id="XMLID_1_">
+	<g>
+		<path class="st0" d="M0,107c39.4-89.8,134.7,3,234-48c125.3-64.3,255,83.2,255,224S328,552.3,226,476.3
+			C147.4,417.7,40.3,475.5,0.7,386"/>
+	</g>
+</g>
 </svg>

@@ -871,77 +871,66 @@ body {
       margin: auto;
       position: relative; }
       #servicos .services-wrap .service-item {
-        height: auto;
-        margin: 50px auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        transition-timing-function: cubic-bezier(0.22, 1.61, 0.65, 1);
-        transition-duration: 1s;
-        transition-delay: 0.37s; }
-        #servicos .services-wrap .service-item:nth-child(even) {
-          flex-direction: row-reverse; }
-        #servicos .services-wrap .service-item .wrap-thumb,
-        #servicos .services-wrap .service-item .wrap-infos {
+        background: none;
+        height: 390px;
+        margin: 25px auto;
+        padding: 0 10px; }
+        #servicos .services-wrap .service-item .container-service {
+          background: none;
           width: 100%;
           height: 100%;
+          border-radius: 4px;
+          padding: 0 10px;
           display: flex;
-          align-items: center;
           flex-wrap: wrap;
-          text-align: center;
-          border: none; }
-          #servicos .services-wrap .service-item .wrap-thumb .attachment-awp-icon,
-          #servicos .services-wrap .service-item .wrap-infos .attachment-awp-icon {
-            display: block;
-            margin: 5px auto; }
-          #servicos .services-wrap .service-item .wrap-thumb .title-service,
-          #servicos .services-wrap .service-item .wrap-infos .title-service {
-            width: 100%;
-            font-size: 2.7em;
-            font-weight: 900;
-            text-transform: capitalize;
-            text-align: left;
-            color: #676767;
-            letter-spacing: 2px;
-            display: block;
-            margin: 15px auto;
-            position: relative; }
-          #servicos .services-wrap .service-item .wrap-thumb .wrap-tags,
-          #servicos .services-wrap .service-item .wrap-infos .wrap-tags {
-            width: 100%;
-            height: 30px;
+          align-items: center;
+          justify-content: space-between;
+          transition-timing-function: cubic-bezier(0.22, 1.61, 0.65, 1);
+          transition-duration: 1s;
+          transition-delay: 0.37s;
+          box-shadow: 0px 0px 5px #ECECEC; }
+          #servicos .services-wrap .service-item .container-service .wrap-thumb {
+            width: 96px;
+            height: 96px;
+            border-radius: 100%;
+            border: 1px solid #ECECEC;
+            margin: 10px auto;
+            overflow: hidden;
+            box-shadow: 0px 0px 5px #252E3A; }
+            #servicos .services-wrap .service-item .container-service .wrap-thumb .wp-post-image {
+              width: 100%;
+              height: 100%; }
+          #servicos .services-wrap .service-item .container-service .wrap-infos {
             display: flex;
             align-items: center;
-            display: none; }
-            #servicos .services-wrap .service-item .wrap-thumb .wrap-tags .tags,
-            #servicos .services-wrap .service-item .wrap-infos .wrap-tags .tags {
-              font-size: 1.4em;
-              font-weight: 500;
+            flex-wrap: wrap;
+            text-align: center;
+            border: none; }
+            #servicos .services-wrap .service-item .container-service .wrap-infos .title-service {
+              width: 100%;
+              font-size: 2em;
+              font-weight: 900;
+              text-transform: capitalize;
+              text-align: center;
               color: #676767;
-              margin: 0 10px; }
-              #servicos .services-wrap .service-item .wrap-thumb .wrap-tags .tags:first-child,
-              #servicos .services-wrap .service-item .wrap-infos .wrap-tags .tags:first-child {
-                margin-left: 0; }
-              #servicos .services-wrap .service-item .wrap-thumb .wrap-tags .tags a,
-              #servicos .services-wrap .service-item .wrap-infos .wrap-tags .tags a {
-                color: #1D2433; }
-          #servicos .services-wrap .service-item .wrap-thumb p,
-          #servicos .services-wrap .service-item .wrap-infos p {
-            width: 100%;
-            font-size: 2em;
-            line-height: 1.6em;
-            color: #676767;
-            text-align: left;
-            margin: 10px auto; }
-          #servicos .services-wrap .service-item .wrap-thumb strong,
-          #servicos .services-wrap .service-item .wrap-infos strong {
-            font-weight: 900; }
-          #servicos .services-wrap .service-item .wrap-thumb .link-more,
-          #servicos .services-wrap .service-item .wrap-infos .link-more {
-            font-size: 1.6em;
-            color: #FF4229;
-            margin: 25px 0;
-            display: block; } }
+              letter-spacing: 2px;
+              display: block;
+              margin: 15px auto;
+              position: relative; }
+            #servicos .services-wrap .service-item .container-service .wrap-infos p {
+              width: 100%;
+              font-size: 1.8em;
+              line-height: 1.6em;
+              color: #676767;
+              text-align: center;
+              margin: 10px auto; }
+            #servicos .services-wrap .service-item .container-service .wrap-infos strong {
+              font-weight: 900; }
+            #servicos .services-wrap .service-item .container-service .wrap-infos .link-more {
+              font-size: 1.6em;
+              color: #FF4229;
+              margin: 25px 0;
+              display: block; } }
 
 @media only screen and (max-width: 420px) {
   #portfolio {
@@ -1074,9 +1063,15 @@ body {
         text-decoration: none; } }
 @media only screen and (min-width: 1280px) {
   #portfolio {
-    background: none;
+    background: #252E3A;
     width: 100%;
-    height: 100vh; }
+    height: 1100px;
+    padding-top: 25px; }
+    #portfolio .sct-header {
+      margin-bottom: 75px; }
+      #portfolio .sct-header .sct-title,
+      #portfolio .sct-header .sct-subtitle {
+        color: #FFFFFF; }
     #portfolio .slick-list {
       height: 100%; }
     #portfolio .slick-track {
@@ -1084,27 +1079,40 @@ body {
     #portfolio .portfolio-wrap {
       background: none;
       height: 100%;
-      margin: auto; }
+      margin: auto;
+      margin-top: 25px; }
       #portfolio .portfolio-wrap .portfolio-item {
-        background: #FFFFFF;
-        height: 100%;
+        background: none;
+        height: 520px;
         display: flex;
         padding: 0;
         margin: 0;
         transition-timing-function: cubic-bezier(0.22, 1.61, 0.65, 1);
         transition-duration: 1s;
+        overflow: hidden;
         position: relative; }
+        #portfolio .portfolio-wrap .portfolio-item:before {
+          content: "";
+          width: 520px;
+          height: 520px;
+          background: #1D2433;
+          border-radius: 10%;
+          top: 0;
+          left: -50px;
+          position: absolute;
+          z-index: 1;
+          opacity: 1;
+          transition-duration: 1s; }
         #portfolio .portfolio-wrap .portfolio-item:after {
           content: "";
-          width: 50%;
-          height: 100%;
+          width: 520px;
+          height: 520px;
           background: #F4F4F4;
-          border-top-right-radius: 50%;
-          border-bottom-right-radius: 50%;
+          border-radius: 10%;
           top: 0;
           left: -100%;
           position: absolute;
-          z-index: 1;
+          z-index: 2;
           opacity: 0;
           transition-duration: 1s; }
         #portfolio .portfolio-wrap .portfolio-item .wrap-half {
@@ -1123,27 +1131,38 @@ body {
             display: block; }
           #portfolio .portfolio-wrap .portfolio-item .wrap-half .title-portfolio {
             width: 100%;
-            font-size: 3.2em;
+            font-size: 2.4em;
             font-weight: 900;
             text-align: center;
             text-transform: capitalize;
-            color: #33363E;
+            line-height: 2;
+            color: #FFFFFF;
             display: block;
-            margin: 35px auto; }
+            margin: 35px auto;
+            position: relative; }
+            #portfolio .portfolio-wrap .portfolio-item .wrap-half .title-portfolio:after {
+              content: "";
+              background: #FFFFFF;
+              width: 30%;
+              height: 1px;
+              opacity: 0.4;
+              bottom: -40px;
+              left: calc(100% / 2 - 15%);
+              position: absolute; }
           #portfolio .portfolio-wrap .portfolio-item .wrap-half p {
-            font-size: 2.4em;
+            font-size: 1.8em;
             line-height: 44px;
             text-align: center;
-            color: #676767;
+            color: #FFFFFF;
             margin: 25px auto; }
           #portfolio .portfolio-wrap .portfolio-item .wrap-half .button-link {
             width: 195px;
             height: 60px;
             font-size: 2em;
-            color: #1D2433;
+            color: #FF4229;
             text-align: center;
-            border: 1px solid #1D2433;
-            border-radius: 3px;
+            border: 1px solid #FF4229;
+            border-radius: 8px;
             padding: 15px 25px;
             margin: 25px auto;
             position: relative;
@@ -1194,12 +1213,9 @@ body {
           transition-duration: 1s; }
         #portfolio .portfolio-wrap .slick-active:after {
           content: "";
-          height: 100%;
           background: #F4F4F4;
-          border-top-right-radius: 50%;
-          border-bottom-right-radius: 50%;
           top: 0;
-          left: -8%;
+          left: -60px;
           position: absolute;
           z-index: 1;
           opacity: 1;

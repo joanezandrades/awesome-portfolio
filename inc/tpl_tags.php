@@ -263,27 +263,16 @@ function get_services() {
                     $getServices->the_post();
             ?>           
             
-            <article class="col-xl-10 service-item">
-                
-                <div class="wrap-thumb">
-                    <?php the_post_thumbnail('awp-icon'); ?>                    
-                </div>
-                
-                <div class="wrap-infos">
-                    <h4 class="title-service" title="<?php the_title(); ?>"><?php the_title(); ?></h4>
-                    <div class="wrap-tags">
-                        <?php 
-                        $args_tax = array(
-                            'post'      => 0,
-                            'before'    => '<div class="tags">',
-                            'sep'       => ',',
-                            'after'     => '</div>',
-                            'template'  => '<span style="display: none">%s:</span> %l.'
-                        );
-                        the_taxonomies( $args_tax );                        
-                        ?>
+            <article class="col-xl-4 service-item">
+                <div class="container-service">
+                    <div class="wrap-thumb">
+                        <?php the_post_thumbnail('awp-icon'); ?>                    
                     </div>
-                    <?php the_excerpt(); ?>
+                    
+                    <div class="wrap-infos">
+                        <h4 class="title-service" title="<?php the_title(); ?>"><?php the_title(); ?></h4>
+                        <?php the_excerpt(); ?>
+                    </div>
                 </div>
 
             </article>

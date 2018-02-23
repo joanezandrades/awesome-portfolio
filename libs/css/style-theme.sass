@@ -705,6 +705,7 @@
 						font-size: $small-title
 						font-weight: $font-regular
 						color: $color-neuter
+
 .active-secondary-menu
 	@media #{$information-desktop}
 		right: 0
@@ -1156,94 +1157,87 @@
 
 			// - Item de servico
 			.service-item
-				height: auto
+				background: none
+				height: 390px
 
-				margin: 50px auto
-				display: flex 
-				align-items: center
-				justify-content: space-between
+				margin: 25px auto
+				padding: 0 10px
 
-				transition-timing-function: $trans-time-default
-				transition-duration: $trans-duration-default
-				transition-delay: $trans-delay-default
+				.container-service
+					background: none
+					// background: $color-text-secondary
+					width: 100%
+					height: 100%
 
-				// position: absolute
-
-				&:nth-child(even)
-					flex-direction: row-reverse
-
-				.wrap-thumb,
-				.wrap-infos
-					width: $defaultWidth
-					height: $defaultHeight
+					border-radius: 4px
+					padding: 0 10px
 
 					display: flex
-					align-items: center
 					flex-wrap: wrap
+					align-items: center
+					justify-content: space-between
 
-					text-align: center
-					border: none
-							
-					// - icon
-					.attachment-awp-icon
-						display: block
-						margin: 5px auto
+					transition-timing-function: $trans-time-default
+					transition-duration: $trans-duration-default
+					transition-delay: $trans-delay-default
 
-					// - title
-					.title-service
-						width: 100%
+					box-shadow: 0px 0px 5px $color-border
 
-						font-size: $small-title
-						font-weight: $font-bold
-						text-transform: capitalize
-						text-align: left
-						color: $color-text
-						letter-spacing: 2px
+					.wrap-thumb
+						width: 96px
+						height: 96px
 
-						display: block
-						margin: 15px auto
-						position: relative
+						border-radius: 100%
+						border: 1px solid $color-border
 
-					.wrap-tags
-						width: $defaultWidth
-						height: 30px
+						margin: 10px auto
+						overflow: hidden
+						box-shadow: 0px 0px 5px $color-secondary
 
+						.wp-post-image
+							width: 100%
+							height: 100%
+
+					.wrap-infos
 						display: flex
 						align-items: center
+						flex-wrap: wrap
 
-						display: none
-
-						.tags
-							font-size: $small-tag
-							font-weight: $font-regular
-							color: $color-text
-
-							margin: 0 10px
-
-							&:first-child
-								margin-left: 0
-
-							a
-								color: $color-primary
+						text-align: center
+						border: none
 								
+						// - title
+						.title-service
+							width: 100%
 
-					p
-						width: $defaultWidth
-						font-size: $small-text
-						line-height: $medium-tag
-						color: $color-text
-						text-align: left
-						margin: 10px auto
+							font-size: $small-text
+							font-weight: $font-bold
+							text-transform: capitalize
+							text-align: center
+							color: $color-text
+							letter-spacing: 2px
 
-					strong
-						font-weight: $font-bold
+							display: block
+							margin: 15px auto
+							position: relative									
 
-					.link-more
-						font-size: $medium-tag
-						color: $color-accent
+						p
+							width: $defaultWidth
+							font-size: $big-tag
+							line-height: $medium-tag
+							color: $color-text
+							text-align: center
+							margin: 10px auto
 
-						margin: 25px 0
-						display: block
+						strong
+							font-weight: $font-bold
+
+						.link-more
+							font-size: $medium-tag
+							color: $color-accent
+
+							margin: 25px 0
+							display: block
 
 // --------------------------------------------------------------
 // # Portfólio - section portfólio
@@ -1446,11 +1440,18 @@
 				text-decoration: none
 
 	@media #{$information-desktop}
-		background: none
+		background: $color-secondary
 		width: 100%
-		height: 100vh
-		// overflow: hidden
+		height: 1100px
+		padding-top: 25px
 
+		.sct-header
+			margin-bottom: 75px
+
+			.sct-title,
+			.sct-subtitle
+				color: $color-neuter
+				
 		.slick-list
 			height: 100%
 
@@ -1462,14 +1463,13 @@
 			background: none
 
 			height: 100%
-
 			margin: auto
+			margin-top: 25px
 
 			// - Portfólio item
 			.portfolio-item
-				background: $color-neuter
-				// width: 100%
-				height: 100%
+				background: none
+				height: 520px
 
 				display: flex
 				padding: 0
@@ -1478,22 +1478,37 @@
 				transition-timing-function: $trans-time-default
 				transition-duration: $trans-duration-default
 
-				// overflow: hidden
+				overflow: hidden
 				position: relative
+
+				&:before
+					content: ''
+					width: 520px
+					height: 520px
+
+					background: $color-primary
+					border-radius: 10%
+
+					top: 0
+					left: -50px
+					position: absolute
+					z-index: 1
+					opacity: 1
+
+					transition-duration: $trans-duration-default
 
 				&:after
 					content: ''
-					width: 50%
-					height: 100%
+					width: 520px
+					height: 520px
 
 					background: $color-neuter-secondary
-					border-top-right-radius: 50%
-					border-bottom-right-radius: 50%
+					border-radius: 10%
 
 					top: 0
 					left: -100%
 					position: absolute
-					z-index: 1
+					z-index: 2
 					opacity: 0
 
 					transition-duration: $trans-duration-default
@@ -1520,21 +1535,34 @@
 					.title-portfolio
 						width: 100%
 
-						font-size: $medium-title
+						font-size: $big-text
 						font-weight: $font-bold
 						text-align: center
 						text-transform: capitalize
-						color: $color-text-secondary
+						line-height: 2
+						color: $color-neuter
 						
 						display: block
 
 						margin: 35px auto
-						// position: absolute
+						position: relative
+
+						&:after
+							content: ''
+							background: $color-neuter
+							width: 30%
+							height: 1px
+
+							opacity: .4
+
+							bottom: -40px
+							left: calc(100% / 2 - 15%)
+							position: absolute
 					p
-						font-size: $big-text
+						font-size: $big-tag
 						line-height: 44px
 						text-align: center
-						color: $color-text
+						color: $color-neuter
 						margin: 25px auto
 
 					.button-link
@@ -1542,11 +1570,11 @@
 						height: 60px
 
 						font-size: $small-text
-						color: $color-primary
+						color: $color-accent
 						text-align: center
 
-						border: 1px solid $color-primary
-						border-radius: 3px
+						border: 1px solid $color-accent
+						border-radius: 8px
 						padding: 15px 25px
 						margin: 25px auto
 
@@ -1616,15 +1644,10 @@
 				
 				&:after
 					content: ''
-					// width: 50%
-					height: 100%
-
 					background: $color-neuter-secondary
-					border-top-right-radius: 50%
-					border-bottom-right-radius: 50%
 
 					top: 0
-					left: -8%
+					left: -60px
 					position: absolute
 					z-index: 1
 					opacity: 1
