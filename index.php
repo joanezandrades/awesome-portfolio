@@ -30,8 +30,8 @@ get_header();
     <?php get_services(); ?>
 </section> <!-- /.end servicos -->
 
-<section id="portfolio" class="bg-parallax" data-speed="0" style="display: none">
-    <?php get_portfolio(); ?>
+<section id="portfolio" class="bg-parallax" data-speed="0">
+    <?php //get_portfolio(); ?>
 </section> <!-- /.end portfolio -->
 
 <section id="contato" class="bg-parallax" data-speed="0">

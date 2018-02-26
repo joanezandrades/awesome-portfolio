@@ -405,7 +405,7 @@ function get_contato(){
 
         <!-- Formulário / Informações -->
         <div id="box-contact-mobile" class="box-contact container row">
-            <div class="wrap-form col-xl-8">
+            <div class="wrap-contact col-xl-8">
                 <!-- Header mobile -->
                 <header class="head-form-mobile">
                     <div class="contagem">
@@ -420,7 +420,7 @@ function get_contato(){
                 </header><!-- /End header Mobile -->
                 
                 <form action="" method="post" id="formulario" class="form row">
-                    <div class="description-for-desktop">
+                    <div class="header-for-desktop">
                         <h3 class="title">Formulário de contato</h3>
                         <p class="subtitle">Preencha o formulário que eu te retorno</p>
                     </div>
@@ -512,6 +512,10 @@ function get_contato(){
             </div> <!-- /End wrap-form -->
 
             <div class="wrap-contact col-xl-4">
+                <div class="header-for-desktop">
+                    <h3 class="title">Outras informações</h3>
+                    <p class="subtitle">Social network e contato direto</p>
+                </div>
                 <div class="contact-item">
                     <span class="label-desc">E-mail</span>
                     <p class="text"><i class="fa fa-envelope"></i><?php echo get_post_meta( $pageID, 'cb_contato_email', true ); ?></p>

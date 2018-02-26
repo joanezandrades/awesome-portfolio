@@ -1440,17 +1440,32 @@
 				text-decoration: none
 
 	@media #{$information-desktop}
-		background: $color-secondary
+		background-image: url('https://images.pexels.com/photos/273230/pexels-photo-273230.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb')
+		background-size: 100%
+		background-repeat: no-repeat
+		background-attachment: fixed
+		// background: $color-secondary
 		width: 100%
-		height: 1100px
-		padding-top: 25px
+		height: 105vh
+		padding-top: 15px
 
-		.sct-header
-			margin-bottom: 75px
+		position: relative
 
-			.sct-title,
-			.sct-subtitle
-				color: $color-neuter
+		display: none
+
+		&:before
+			content: ''
+			background: $color-primary
+			opacity: .6
+
+			width: 100%
+			height: 100%
+			top: 0
+			left: 0
+			position: absolute
+		.sct-title,
+		.sct-subtitle
+			color: $color-neuter
 				
 		.slick-list
 			height: 100%
@@ -1462,10 +1477,13 @@
 		.portfolio-wrap
 			background: none
 
-			height: 100%
 			margin: auto
 			margin-top: 25px
 
+
+			// 
+			.slick-track
+				height: auto
 			// - Portfólio item
 			.portfolio-item
 				background: none
@@ -2107,6 +2125,7 @@
 
 		.box-contact
 			background: $color-neuter
+			height: 610px
 			padding: 15px 25px
 			border-radius: 5px
 
@@ -2116,7 +2135,7 @@
 			position: absolute
 
 		// Wrap-form
-		.wrap-form
+		.wrap-contact
 			height: 530px
 			position: relative
 
@@ -2131,6 +2150,28 @@
 				opacity: .5
 				position: absolute
 			
+			.header-for-desktop
+				width: auto
+				height: 80px
+
+				display: flex
+				flex-wrap: wrap
+				align-content: center
+				border-bottom: 1px solid $color-neuter-secondary
+
+				.title
+					font-size: $small-text
+					font-weight: $font-bold
+					color: $color-text
+
+					display: block
+					width: 100%
+
+				.subtitle
+					font-size: $medium-tag
+					font-weight: $font-regular
+					color: $color-text
+
 			// Display header form mobile
 			.head-form-mobile
 				display: none
@@ -2139,29 +2180,6 @@
 			.form
 				padding: 20px 25px
 				// display: none
-
-				.description-for-desktop
-					width: auto
-					height: 80px
-
-					display: flex
-					flex-wrap: wrap
-					align-content: center
-					border-bottom: 1px solid $color-neuter-secondary
-
-					.title
-						font-size: $small-text
-						font-weight: $font-bold
-						color: $color-text
-
-						display: block
-						width: 100%
-
-					.subtitle
-						font-size: $medium-tag
-						font-weight: $font-regular
-						color: $color-text
-
 
 				// Display na descrição dos campos
 				.description-for-mob-app
