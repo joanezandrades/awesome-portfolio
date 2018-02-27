@@ -404,26 +404,27 @@ function get_contato(){
         </div>
 
         <!-- Formulário / Informações -->
-        <div id="box-contact-mobile" class="box-contact container row">
-            <div class="wrap-contact col-xl-8">
-                <!-- Header mobile -->
-                <header class="head-form-mobile">
-                    <div class="contagem">
-                        <span id="count-phase-one" class="count active-count">1/3</span>
-                        <span id="count-phase-two" class="count">2/3</span>
-                        <span id="count-phase-three" class="count">3/3</span>                        
-                    </div>
+        <div id="box-contact-mobile" class="wrapper-contact container row">
+            <div class="wrapper-form col-xl-8">
+                <!-- Header Formulário -->
+                <header class="header-formulario">
+                    <div class="head-form-desktop">
+                        <h3 class="title">Formulário de contato</h3>
+                        <p class="subtitle">Preencha o formulário que eu te retorno</p>
+                    </div> <!-- End heade for desktop -->
+                    <div class="header-form-mobile">
+                        <div class="wrap-count">
+                            <span id="count-phase-one" class="count active-count">1/3</span>
+                            <span id="count-phase-two" class="count">2/3</span>
+                            <span id="count-phase-three" class="count">3/3</span>                        
+                        </div>
+                    </div> <!-- End header for mobile -->
                     <div id="close-app-form" class="btn-close">
                         <span class="text">sair</span>
                         <i class="icon fa fa-times-circle"></i>
-                    </div>
+                    </div><!-- End btn for mobile -->
                 </header><!-- /End header Mobile -->
-                
                 <form action="" method="post" id="formulario" class="form row">
-                    <div class="header-for-desktop">
-                        <h3 class="title">Formulário de contato</h3>
-                        <p class="subtitle">Preencha o formulário que eu te retorno</p>
-                    </div>
                     <div class="wrapp-app-form phase-one active-phase col-xl-12 row">
                         <!-- Descrição dos campos -->
                         <div class="description-for-mob-app">
@@ -436,10 +437,12 @@ function get_contato(){
                         <!-- Campos -->
                         <div class="wrap-input col-sm-12 col-xl-6">
                             <label for="ipt-name" class="name">Nome</label>
+                            <span class="error-message">Por favor, insira seu nome.</span>
                             <input id="ipt-name" type="text" class="ipt-form" placeholder="Insira o Nome" pattern="[A-Za-z0-9]{5,50}" required>
                         </div>
                         <div class="wrap-input col-sm-12 col-xl-6">
                             <label for="ipt-email" class="name">E-mail</label>
+                            <span class="error-message">Por favor, insira seu e-mail.</span>
                             <input id="ipt-email" type="email" class="ipt-form" placeholder="Seu principal e-mail" pattern="([A-Za-z0-9]{1,50}@)" required>
                         </div>
 
@@ -511,8 +514,8 @@ function get_contato(){
                 </div>
             </div> <!-- /End wrap-form -->
 
-            <div class="wrap-contact col-xl-4">
-                <div class="header-for-desktop">
+            <div class="wrap-contact-infos col-xl-4">
+                <div class="head-form-desktop">
                     <h3 class="title">Outras informações</h3>
                     <p class="subtitle">Social network e contato direto</p>
                 </div>
