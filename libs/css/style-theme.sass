@@ -210,6 +210,15 @@
 .slider-nav
 	z-index: 999
 
+// Borders de estilização de sucesso e erro
+.border-success
+	@media #{$information-desktop}
+		border: 1px solid #27ae60
+
+.border-error
+	@media #{$information-desktop}
+		border: 1px solid #e74c3c
+
 .nav-servicos
 	width: 380px
 	height: 35px
@@ -900,15 +909,27 @@
 		position: relative
 
 		&:before
-			content: ''
+			// content: ''
 			background: $color-primary
-			width: 2300px
+			width: 100%
+			height: 100%
+			top: 0
+			left: 0
+			opacity: .4
+			z-index: 1
+			position: absolute
+
+		.bg-homepage
+			background-size: 70%
+			background-repeat: no-repeat
+			background-attachment: fixed
+			background-position: center
+			width: 100%
 			height: 100%
 
-			top: -30%
-			left: -30%
-
-			transform: rotate(-15deg)
+			top: 0
+			left: 0
+			opacity: .35
 			position: absolute
 		
 		.container-fluid
@@ -926,94 +947,51 @@
 				width: calc( 100% / 2 - 10px )
 				height: 100%
 
-				margin: auto
+				margin: 0
+				margin-left: 50px
 				padding: 0 20px
 
 				display: flex
 				flex-wrap: wrap
 
 				align-content: center
-				overflow: hidden
+				z-index: 9
+				position: relative
 
-				.big-title
+				.title
 					width: 100%
 
-					font-size: $big-title
-					font-weight: $font-light
+					font-size: $big-tag
+					font-weight: $font-regular
 					line-height: 1.6
-					color: $color-neuter
+					color: $color-primary
 
 				.excerpt
 					width: 100%
 
-					font-size: $small-text
-					font-weight: $font-light
+					font-size: $big-title
+					font-weight: $font-bold
 					line-height: 1.6
-					color: $color-neuter
+					color: $color-primary
 
 					margin: 15px auto
 
-				.attachment-full
-					width: 100%
-					height: 100%
-					margin: auto
-
-				.link-post
-					background: $color-neuter
+				.btn-contact
+					background: $color-primary
 
 					width: 175px
 					height: 50px
 
 					margin: 15px 0
 					border: none
-					border-radius: 3px
+					border-radius: 5px
 
-					a
-						color: $color-primary
-						text-align: center
-						text-transform: uppercase
-						font-size: $medium-tag
-						font-weight: $font-bold
-						line-height: 3.3
-
-					
-		.slick-dots
-			width: 280px
-			height: 45px
-
-			margin: 30px 0
-
-			display: flex
-			align-items: center
-
-			right: 0
-			position: absolute
-
-			li
-				background: none
-				width: 25px
-				height: 8px
-
-				margin: 0 15px
-
-				border: 1px solid $color-menu
-				border-radius: 3px
-				overflow: hidden
-
-				button
-					background: $color-neuter
-					width: 100%
-					height: 100%
-
-					border: none
 					color: $color-neuter
-
-			.slick-active
-				border: none
-
-				button
-					background: $color-primary
-					color: $color-primary
+					text-align: center
+					text-transform: uppercase
+					font-size: $small-tag
+					font-weight: $font-bold
+					line-height: 3.3
 
 // --------------------------------------------------------------
 // # Serviços - section services
@@ -1141,7 +1119,7 @@
 		padding: 45px 0
 	
 		.section-wrap
-			margin-top: 50px
+			// margin-top: 50px
 
 
 		.services-wrap
@@ -1188,11 +1166,11 @@
 						height: 96px
 
 						border-radius: 100%
-						border: 1px solid $color-border
+						// border: 1px solid $color-border
 
 						margin: 10px auto
 						overflow: hidden
-						box-shadow: 0px 0px 5px $color-secondary
+						box-shadow: 0px 0px 10px $color-border
 
 						.wp-post-image
 							width: 100%
@@ -1210,7 +1188,7 @@
 						.title-service
 							width: 100%
 
-							font-size: $small-text
+							font-size: $big-tag
 							font-weight: $font-bold
 							text-transform: capitalize
 							text-align: center
@@ -1223,8 +1201,8 @@
 
 						p
 							width: $defaultWidth
-							font-size: $big-tag
-							line-height: $medium-tag
+							font-size: $medium-tag
+							line-height: $big-tag
 							color: $color-text
 							text-align: center
 							margin: 10px auto
@@ -2067,7 +2045,7 @@
 			position: absolute
 
 	@media #{$information-desktop}
-		background: $color-neuter-secondary
+		background: $color-neuter
 		background-size: cover
 		width: 100%
 		min-height: 100vh
@@ -2084,18 +2062,6 @@
 			height: 440px
 
 			position: relative
-
-			&:before
-				content: ''
-				background: $color-primary
-				opacity: .7
-
-				width: 100%
-				height: 100%
-
-				top: 0
-				left: 0
-				position: absolute
 
 			.sct-title
 				background: $color-primary
@@ -2132,7 +2098,7 @@
 			padding: 15px 25px
 			border-radius: 5px
 
-			box-shadow: 0px 0px 5px $color-border
+			// box-shadow: 0px 0px 5px $color-border
 
 			top: 140px
 			position: absolute
@@ -2142,10 +2108,13 @@
 		.wrapper-form,
 		.wrap-contact-infos
 			height: 530px
+			border-right: 1px solid $color-neuter-secondary
 			position: relative
 
+			&:nth-child(2)
+				border-right: none
 			&:after
-				content: ''
+				// content: ''
 				background: $color-border
 				width: 1px
 				height: 360px
@@ -2218,6 +2187,9 @@
 
 						display: block
 						margin: 10px 0
+
+						opacity: 1
+						transition: $transition-basic
 					
 					/* error message */
 					.error-message
@@ -2245,7 +2217,7 @@
 
 						padding: 0 10px
 
-						border: none
+						border: 1px solid $color-border
 						border-radius: 4px
 						outline: none
 
@@ -2253,6 +2225,24 @@
 					
 					.ipt-textarea
 						height: auto
+
+					// Borders de estilização de sucesso e erro
+					.border-success
+						border-top: 1px solid $color-border
+						border-right: 1px solid $color-border
+						border-left: 1px solid $color-border
+						border-bottom: 2px solid #27ae60
+
+					.border-error
+						border-top: 1px solid $color-border
+						border-right: 1px solid $color-border
+						border-left: 1px solid $color-border
+						border-bottom: 2px solid #e74c3c
+
+					// Classe .hide para esconder elementos
+					.hide
+						opacity: 0
+						transition: $transition-basic
 
 				.next-phase
 					display: none
@@ -2360,7 +2350,7 @@
 				height: auto
 				margin: 5px auto
 				padding: 5px 0
-				border-bottom: 1px solid $color-border
+				border-bottom: 1px solid $color-neuter-secondary
 
 				text-align: left
 

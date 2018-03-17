@@ -1,57 +1,160 @@
 /**
  * Funções relacionadas a seção de contato
 */
+/**
+ * Capturando os elementos de input
+ * Aqui o importante é listar os elementos, e pegar as informações em cada cenário específico
+*/
+let iptName     = $('#ipt-name');
+let iptEmail    = $('#ipt-email');
+let iptJob      = $('#ipt-job');
+let iptDate     = $('#ipt-deadline');
+let iptBudget   = $('#ipt-budget');
+let iptMsg      = $('#ipt-description');
+
+// Botão send
+let btnSubmitForm = $('#submit-form');
 
 /**
  * Patterns de validação dos campos
  * @func regExpName
  * @func regExpEmail
+ * @func regExpTypeJob
  * @func regExpOrcamento
 */
 function regExpName (nameUser){
     
-    let patternName = /[a-z]{4,25}/;
+    let patternName = /^\w{4,25}/;
     let patternTest = patternName.test(nameUser);
 
-    if( patternTest ) {
+    // Se for true
+    if( patternTest ){
 
-        $('#ipt-name').css({
-            'border' : '1px solid green'
-        })
-        console.log(`O Padrão é: ${patternTest}`)
-    } else {
+        iptName
+            .removeClass('border-errror')
+            .addClass('border-success')
+            .siblings('.error-message').removeClass('err-mess-show')
+            .siblings('.name').removeClass('hide')
+    }else{
 
-        $('#ipt-name').css({
-            'border' : '1px solid red'
-        })
-        console.log(`O Padrão é: ${patternTest}`)
+        iptName
+            .removeClass('border-success')
+            .addClass('border-error')
+            .siblings('.error-message').addClass('err-mess-show')
+            .siblings('.name').addClass('hide')
     }
 }
 
 function regExpEmail (emailUser){
 
-    let patternEmail = /\w(@)/;
+    let patternEmail = /^\w+@\w+\.\w+\.?\w+$/;
     let patternTest = patternEmail.test(emailUser);
 
+    // Se for true
     if( patternTest ){
 
-        $('#ipt-email').css({
+        iptEmail
+            .removeClass('border-error')
+            .addClass('border-success')
+            .siblings('.error-message').removeClass('err-mess-show')
+            .siblings('.name').removeClass('hide')
+    }else{
 
-            'border' : '1px solid green'
-        });
-        console.log(`O Padrão é: ${patternTest}`);
-    } else {
-
-        $('#ipt-email').css({
-            'border' : '1px solid red'
-        })
-        console.log(`O Padrão é: ${patternTest}`);
+        iptEmail
+            .removeClass('border-success')
+            .addClass('border-error')
+            .siblings('.error-message').addClass('err-mess-show')
+            .siblings('.name').addClass('hide')
     }
 }
 
-function regExpOrcamento (orcamento){
+function regExpTypeJob (content) {
 
+    let patternJob = /\w/;
+    let patternTest = patternJob.test(content);
+
+    // Se for true
+    if( patternTest ){
+
+        iptJob
+            .removeClass('border-error')
+            .addClass('border-success')
+            .siblings('.error-message').removeClass('err-mess-show')
+            .siblings('.name').removeClass('hide')
+    } else{
+
+        iptJob
+            .removeClass('border-success')
+            .addClass('border-error')
+            .siblings('.error-message').addClass('err-mess-show')
+            .siblings('.name').addClass('hide')
+    }
 }
+
+function regExpDate (date) {
+    /**
+     * Função que recebe uma data para verificar se é uma string vazia, se não for vazia
+     * adiciona borda verde no campo data. Se não, adiciona borda vermelha.
+    */
+    if(date != '') {
+
+        iptDate.css({
+
+            'border' : '1px solid green'
+        });
+    } else {
+
+        iptDate.css({
+            
+            'border' : '1px solid red'
+        })
+    }
+}
+
+function regExpMsg (msg) {
+
+    patternMsg = /\w+/;
+    patternTest = patternMsg.test(msg);
+
+    // Se for true
+    if( patternTest ) {
+
+        iptMsg
+            .removeClass('border-error')
+            .addClass('border-success')
+            .siblings('.error-message').removeClass('err-mess-show');
+    } else {
+
+        iptMsg
+            .removeClass('border-success')
+            .addClass('border-error')
+            .siblings('.error-message').addClass('err-mess-show');
+    }
+}
+
+/**
+ * Verificações quando o usuário sair do campo
+ * 
+*/
+iptName.focusout( function() { 
+
+    regExpName($(this).val());
+});
+
+iptEmail.focusout( function () {
+
+    regExpEmail($(this).val());
+});
+
+iptJob.focusout( function () {
+
+    regExpTypeJob($(this).val());
+})
+
+iptMsg.focusout( function () {
+
+    regExpMsg($(this).val());
+});
 
 /**
  * Funções formulário mobile
@@ -143,64 +246,52 @@ function showBtnSendMobile (){
     })
 }) ();
 
-
 /**
  * Envio e-mail com AJAX + PHP
 */
-$('#submit-form').on( 'click', function(event) {
+btnSubmitForm.on( 'click', function(event) {
 
-    // Coletar dados dos inputs
-    let nameUser    = $('#ipt-name').val();
-    let emailUser   = $('#ipt-email').val();
-    let jobUser     = $('#ipt-job').val();
-    let dateUser    = $('#ipt-deadline').val();
-    let budgetUser  = $('#ipt-budget').val();
-    let messageUser = $('#ipt-description').val();
+    // Testando os campos obrigatórios
+    if( regExpName( iptName.val() ) || regExpEmail( iptEmail.val() ) ){
+        
+        // Completa a mensagem de sucesso com os dados do usuário
+        $('.append-name').append( iptName.val() );
+        $('.append-email').append( iptEmail.val() );
+        $('.append-deadline').append( iptDate.val() );
+        $('.append-budget').append( iptBudget.val() );
 
-    // // Validando os campos
-    // if( nameUser.length <= 3 ) {
-    //     alert('Nome Inválido');
-    //     return false;
-    // }
-    // if( emailUser.length <= 5 ) {
-    //     alert('E-mail inválido');
-    //     return false;
-    // }
-    // if( messageUser.length <= 7 ) {
-    //     alert('Mensagem inválida')
-    //     return false;
-    // }
+        // Construção da url
+        let urlData =   '&name=' + iptName.val() + 
+                        '&email=' + iptEmail.val() +
+                        '&job=' + iptJob.val() + 
+                        '&date=' + iptDate.val() + 
+                        '&budget=' + iptBudget.val() + 
+                        '&message=' + iptMsg.val();
+        
+        // Ajax
+        $.ajax({
+            type: 'POST', 
+            url: 'wp-content/themes/awesome-portfolio/libs/sendmail.php',
+            async: true,
+            data: urlData,
 
-    // Completa a mensagem de sucesso com os dados do usuário
-    $('.append-name').append( nameUser );
-    $('.append-email').append( emailUser );
-    $('.append-deadline').append( dateUser );
-    $('.append-budget').append( budgetUser );
+            success: function(data) {
 
-    // Construção da url
-    let urlData =   '&name=' + nameUser + 
-                    '&email=' + emailUser +
-                    '&job=' + jobUser + 
-                    '&date=' + dateUser + 
-                    '&budget=' + budgetUser + 
-                    '&message=' + messageUser;
-    
-    // Ajax
-    $.ajax({
-        type: 'POST', 
-        url: 'wp-content/themes/awp v2.2/libs/send_email.php',
-        async: true,
-        data: urlData,
-
-        success: function(data) {
-
-            $('.form').css({ 'display' : 'none' });
-            $('.box-success-message').css({ 'display' : 'block' });
-            console.log(data)
-        }
-    })
-    console.log( urlData );
+                $('.form').css({ 'display' : 'none' });
+                $('.box-success-message').css({ 'display' : 'block' });
+                console.log(data)
+            }
+        })
+        event.preventDefault();
+    } else {
+        return false;
+    }
+    // regExpName( iptName.val() );
+    // regExpEmail( iptEmail.val() );
+    // regExpTypeJob( iptJob.val() );
+    // regExpMsg( iptMsg.val() );
 
     event.preventDefault();
+    console.log( urlData );
 });
  

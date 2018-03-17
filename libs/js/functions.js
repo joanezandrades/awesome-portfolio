@@ -154,11 +154,11 @@ $('.portfolio-item').hover( function () {
  * Add Slick slider desktop - portfolio
  * 
 */
-$('.slick-slider-homepage').slick({
-    arrows: false,
-    dots: true,
-    fade: true,
-});
+// $('.slick-slider-homepage').slick({
+//     arrows: false,
+//     dots: true,
+//     fade: true,
+// });
 
 /**
  * Slick slider - galeria dos posts

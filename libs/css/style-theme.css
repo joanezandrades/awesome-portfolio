@@ -195,6 +195,14 @@ body {
 .slider-nav {
   z-index: 999; }
 
+@media only screen and (min-width: 1280px) {
+  .border-success {
+    border: 1px solid #27ae60; } }
+
+@media only screen and (min-width: 1280px) {
+  .border-error {
+    border: 1px solid #e74c3c; } }
+
 .nav-servicos {
   width: 380px;
   height: 35px;
@@ -682,13 +690,24 @@ body {
     overflow: hidden;
     position: relative; }
     #homepage:before {
-      content: "";
       background: #1D2433;
-      width: 2300px;
+      width: 100%;
       height: 100%;
-      top: -30%;
-      left: -30%;
-      transform: rotate(-15deg);
+      top: 0;
+      left: 0;
+      opacity: 0.4;
+      z-index: 1;
+      position: absolute; }
+    #homepage .bg-homepage {
+      background-size: 70%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.35;
       position: absolute; }
     #homepage .container-fluid {
       margin-top: 120px; }
@@ -701,70 +720,40 @@ body {
       #homepage .content-post .half-page {
         width: calc( 100% / 2 - 10px );
         height: 100%;
-        margin: auto;
+        margin: 0;
+        margin-left: 50px;
         padding: 0 20px;
         display: flex;
         flex-wrap: wrap;
         align-content: center;
-        overflow: hidden; }
-        #homepage .content-post .half-page .big-title {
+        z-index: 9;
+        position: relative; }
+        #homepage .content-post .half-page .title {
           width: 100%;
-          font-size: 4.2em;
-          font-weight: 300;
+          font-size: 1.8em;
+          font-weight: 500;
           line-height: 1.6;
-          color: #FFFFFF; }
+          color: #1D2433; }
         #homepage .content-post .half-page .excerpt {
           width: 100%;
-          font-size: 2em;
-          font-weight: 300;
+          font-size: 4.2em;
+          font-weight: 900;
           line-height: 1.6;
-          color: #FFFFFF;
+          color: #1D2433;
           margin: 15px auto; }
-        #homepage .content-post .half-page .attachment-full {
-          width: 100%;
-          height: 100%;
-          margin: auto; }
-        #homepage .content-post .half-page .link-post {
-          background: #FFFFFF;
+        #homepage .content-post .half-page .btn-contact {
+          background: #1D2433;
           width: 175px;
           height: 50px;
           margin: 15px 0;
           border: none;
-          border-radius: 3px; }
-          #homepage .content-post .half-page .link-post a {
-            color: #1D2433;
-            text-align: center;
-            text-transform: uppercase;
-            font-size: 1.6em;
-            font-weight: 900;
-            line-height: 3.3; }
-    #homepage .slick-dots {
-      width: 280px;
-      height: 45px;
-      margin: 30px 0;
-      display: flex;
-      align-items: center;
-      right: 0;
-      position: absolute; }
-      #homepage .slick-dots li {
-        background: none;
-        width: 25px;
-        height: 8px;
-        margin: 0 15px;
-        border: 1px solid #95989A;
-        border-radius: 3px;
-        overflow: hidden; }
-        #homepage .slick-dots li button {
-          background: #FFFFFF;
-          width: 100%;
-          height: 100%;
-          border: none;
-          color: #FFFFFF; }
-      #homepage .slick-dots .slick-active {
-        border: none; }
-        #homepage .slick-dots .slick-active button {
-          background: #1D2433;
-          color: #1D2433; } }
+          border-radius: 5px;
+          color: #FFFFFF;
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 1.4em;
+          font-weight: 900;
+          line-height: 3.3; } }
 
 @media only screen and (max-width: 420px) {
   #servicos {
@@ -861,8 +850,6 @@ body {
     width: 100%;
     min-height: 1340px;
     padding: 45px 0; }
-    #servicos .section-wrap {
-      margin-top: 50px; }
     #servicos .services-wrap {
       width: 100%;
       height: 100%;
@@ -894,10 +881,9 @@ body {
             width: 96px;
             height: 96px;
             border-radius: 100%;
-            border: 1px solid #E2DFDF;
             margin: 10px auto;
             overflow: hidden;
-            box-shadow: 0px 0px 5px #252E3A; }
+            box-shadow: 0px 0px 10px #E2DFDF; }
             #servicos .services-wrap .service-item .container-service .wrap-thumb .wp-post-image {
               width: 100%;
               height: 100%; }
@@ -909,7 +895,7 @@ body {
             border: none; }
             #servicos .services-wrap .service-item .container-service .wrap-infos .title-service {
               width: 100%;
-              font-size: 2em;
+              font-size: 1.8em;
               font-weight: 900;
               text-transform: capitalize;
               text-align: center;
@@ -920,8 +906,8 @@ body {
               position: relative; }
             #servicos .services-wrap .service-item .container-service .wrap-infos p {
               width: 100%;
-              font-size: 1.8em;
-              line-height: 1.6em;
+              font-size: 1.6em;
+              line-height: 1.8em;
               color: #676767;
               text-align: center;
               margin: 10px auto; }
@@ -1508,7 +1494,7 @@ body {
       position: absolute; } }
 @media only screen and (min-width: 1280px) {
   #contato {
-    background: #F4F4F4;
+    background: #FFFFFF;
     background-size: cover;
     width: 100%;
     min-height: 100vh;
@@ -1526,15 +1512,6 @@ body {
       width: 100%;
       height: 440px;
       position: relative; }
-      #contato .header-contato:before {
-        content: "";
-        background: #1D2433;
-        opacity: 0.7;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        position: absolute; }
       #contato .header-contato .sct-title {
         background: #1D2433;
         width: 180px;
@@ -1560,12 +1537,12 @@ body {
       height: 610px;
       padding: 15px 25px;
       border-radius: 5px;
-      box-shadow: 0px 0px 5px #E2DFDF;
       top: 140px;
       position: absolute; }
     #contato .wrapper-form,
     #contato .wrap-contact-infos {
       height: 530px;
+      border-right: 1px solid #F4F4F4;
       position: relative;
       /* 	Header formulário
        * -> Header do formulário, dentro dele estão conteúdos
@@ -1574,9 +1551,11 @@ body {
        * -> Todos os componentes de inputs, labels e mensagens estão aqui dentro */
       /* 	Box Success
        * -> Contém mensagem de sucesso quando envia o e-mail */ }
+      #contato .wrapper-form:nth-child(2),
+      #contato .wrap-contact-infos:nth-child(2) {
+        border-right: none; }
       #contato .wrapper-form:after,
       #contato .wrap-contact-infos:after {
-        content: "";
         background: #E2DFDF;
         width: 1px;
         height: 360px;
@@ -1641,7 +1620,9 @@ body {
             font-weight: 500;
             color: #676767;
             display: block;
-            margin: 10px 0; }
+            margin: 10px 0;
+            opacity: 1;
+            transition: 0.2s linear; }
           #contato .wrapper-form .form .wrap-input .error-message, #contato .wrapper-form .box-success-message .wrap-input .error-message,
           #contato .wrap-contact-infos .form .wrap-input .error-message,
           #contato .wrap-contact-infos .box-success-message .wrap-input .error-message {
@@ -1667,7 +1648,7 @@ body {
             font-size: 1.6em;
             color: #676767;
             padding: 0 10px;
-            border: none;
+            border: 1px solid #E2DFDF;
             border-radius: 4px;
             outline: none;
             box-shadow: 0px 2px 5px #E2DFDF; }
@@ -1675,6 +1656,25 @@ body {
           #contato .wrap-contact-infos .form .wrap-input .ipt-textarea,
           #contato .wrap-contact-infos .box-success-message .wrap-input .ipt-textarea {
             height: auto; }
+          #contato .wrapper-form .form .wrap-input .border-success, #contato .wrapper-form .box-success-message .wrap-input .border-success,
+          #contato .wrap-contact-infos .form .wrap-input .border-success,
+          #contato .wrap-contact-infos .box-success-message .wrap-input .border-success {
+            border-top: 1px solid #E2DFDF;
+            border-right: 1px solid #E2DFDF;
+            border-left: 1px solid #E2DFDF;
+            border-bottom: 2px solid #27ae60; }
+          #contato .wrapper-form .form .wrap-input .border-error, #contato .wrapper-form .box-success-message .wrap-input .border-error,
+          #contato .wrap-contact-infos .form .wrap-input .border-error,
+          #contato .wrap-contact-infos .box-success-message .wrap-input .border-error {
+            border-top: 1px solid #E2DFDF;
+            border-right: 1px solid #E2DFDF;
+            border-left: 1px solid #E2DFDF;
+            border-bottom: 2px solid #e74c3c; }
+          #contato .wrapper-form .form .wrap-input .hide, #contato .wrapper-form .box-success-message .wrap-input .hide,
+          #contato .wrap-contact-infos .form .wrap-input .hide,
+          #contato .wrap-contact-infos .box-success-message .wrap-input .hide {
+            opacity: 0;
+            transition: 0.2s linear; }
         #contato .wrapper-form .form .next-phase, #contato .wrapper-form .box-success-message .next-phase,
         #contato .wrap-contact-infos .form .next-phase,
         #contato .wrap-contact-infos .box-success-message .next-phase {
@@ -1762,7 +1762,7 @@ body {
         height: auto;
         margin: 5px auto;
         padding: 5px 0;
-        border-bottom: 1px solid #E2DFDF;
+        border-bottom: 1px solid #F4F4F4;
         text-align: left; }
         #contato .wrap-contact-infos .contact-item .label-desc {
           width: 100%;

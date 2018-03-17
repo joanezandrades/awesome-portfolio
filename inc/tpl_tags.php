@@ -164,8 +164,8 @@ function get_homepage() {
 
     $args_blog = array(
         'post_type'         => 'post',
-        'category_name'     => 'destaque',
-        'posts_per_page '   => 4,
+        'category_name'     => 'homepage',
+        'posts_per_page '   => 1,
         'orderby'           => 'date',
         'order'             => 'DESC',
         'post_status'       => 'publish'
@@ -177,16 +177,14 @@ function get_homepage() {
         while( $posts_blog->have_posts() ):
             $posts_blog->the_post();
     ?>
-
+    <div class="bg-homepage" style="background-image: url('<?php the_post_thumbnail_url( 'full' ); ?>')"></div>
     <div class="content-post">
         <div class="half-page col-xl-6">
-            <h1 class="big-title"><?php the_title(); ?></h1>
+            <h3 class="title"><?php apply_filters( 'the_title', the_title() ); ?></h1>
             <div class="excerpt">
-                <?php the_excerpt() ?>
+                <?php apply_filters( 'the_excerpt', the_excerpt() ); ?>
             </div>
-        </div>
-        <div class="half-page col-xl-6">
-            <?php the_post_thumbnail( 'full' ) ?>
+            <a class="btn-contact" href="#contato">Entre em contato</a>
         </div>
     </div>
 
@@ -368,7 +366,8 @@ function get_contato(){
     /**
      * get_contato() - Verifica se existe uma page contato e imprime ela na seção
     */
-   $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
+    global $POST;
+    $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
 
     $pageID = $page_contato->ID;
     $page_title = $page_contato->post_name;
@@ -376,7 +375,7 @@ function get_contato(){
 
     if( $page_content ) :
     ?>
-        <header class="header-contato" style="background-image: url(<?php the_post_thumbnail_url( 'full' ) ?>)">
+        <header class="header-contato" style="background-image: url()">
         </header>
     <?php 
     else :
@@ -437,13 +436,13 @@ function get_contato(){
                         <!-- Campos -->
                         <div class="wrap-input col-sm-12 col-xl-6">
                             <label for="ipt-name" class="name">Nome</label>
-                            <span class="error-message">Por favor, insira seu nome.</span>
-                            <input id="ipt-name" type="text" class="ipt-form" placeholder="Insira o Nome" pattern="[A-Za-z0-9]{5,50}" required>
+                            <span class="error-message">O campo não pode estar vázio.</span>
+                            <input id="ipt-name" type="text" class="ipt-form" placeholder="Ex: Harry Garcia" required>
                         </div>
                         <div class="wrap-input col-sm-12 col-xl-6">
                             <label for="ipt-email" class="name">E-mail</label>
-                            <span class="error-message">Por favor, insira seu e-mail.</span>
-                            <input id="ipt-email" type="email" class="ipt-form" placeholder="Seu principal e-mail" pattern="([A-Za-z0-9]{1,50}@)" required>
+                            <span class="error-message">E-mail padrão: "user@domain.com".</span>
+                            <input id="ipt-email" type="email" class="ipt-form" placeholder="Ex: harry.garcia@example.com" required>
                         </div>
 
                         <span id="to-phase-two" class="next-phase">Próximo</span>
@@ -458,6 +457,7 @@ function get_contato(){
                         <!-- Campos -->
                         <div class="wrap-input col-sm-12 col-xl-4">
                             <label for="ipt-job" class="name">Tipo do Job</label>
+                            <span class="error-message">Escolha um job/assunto</span>
                             <input list="jobs" id="ipt-job" type="text" class="ipt-form" placeholder="Selecione uma opção">
                             <datalist id="jobs">
                                 <option value="Website institucional"></option>
@@ -465,6 +465,7 @@ function get_contato(){
                                 <option value="Blog"></option>
                                 <option value="SEO(Search engine Optimization)"></option>
                                 <option value="Design Gráfico"></option>
+                                <option value="Contato profissional"></option>
                             </datalist>
                         </div>
 

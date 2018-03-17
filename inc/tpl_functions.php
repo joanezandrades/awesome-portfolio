@@ -306,6 +306,9 @@ if ( ! function_exists( 'load_scripts_js' ) ) {
         // Slick slider
         wp_enqueue_script( 'slick', get_template_directory_uri() . '/libs/js/slick.js', array('jquery'), null, true );
 
+        // js Mask
+        // wp_enqueue_script( 'jQuery-mask', get_template_directory_uri() . '/libs/js/jquery.mask.min.js', array('jquery'), null, true );
+
         // Main functions js
         wp_enqueue_script( 'main-js', get_template_directory_uri() . '/libs/js/functions.js', array('jquery'), null, true );
 
