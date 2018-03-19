@@ -14,18 +14,52 @@ function make_title(){
     /**
      * @desc: Cria os títulos das abas baseado no tipo de página aberta
     * */
-    if( is_home() ) {
-        return bloginfo('name ') . ' | ' . bloginfo( ' description' );
+    if( is_home() || is_front_page() ) {
+       
+        bloginfo( 'title' ); print( ' - ' ); bloginfo( 'description' );
     }
     else{
-        return bloginfo('name ') . ' | ' . the_title();
+        
+        bloginfo( 'title' ); print( ' - ' ); the_title();
     }
 }
 
+/**
+ * OG:Tags 
+*/
+function og_tags(){
+
+    $logoID = get_theme_mod( 'custom_logo' );
+    $logoURL = wp_get_attachment_image_src( $logoID, 'dmc-logo' );
+    $logoDESC = wp_get_attachment_caption( $logoID );
+    
+    if( is_home() ) :
+        ?>
+        <meta property="og:url"                content="<?php echo get_site_url(); ?>" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:locale"             content="pt_BR" />
+        <meta property="og:title"              content="<?php bloginfo( 'title' ); ?>" />
+        <meta property="og:description"        content="<?php bloginfo( 'description' ) ?>" />
+        <meta property="og:image"              content="<?php echo $logoURL[0]; ?>" />
+        <meta property="og:image:type"         content="image/jpeg" />
+        <?php
+    else :
+        ?>
+        <meta property="og:url"                content="<?php the_permalink(); ?>" />
+        <meta property="og:type"               content="article" />
+        <meta property="og:locale"             content="pt_BR" />
+        <meta property="og:title"              content="<?php the_title(); ?>" />
+        <meta property="og:description"        content="<?php apply_filters( 'the_excerpt', the_excerpt() ); ?>" />
+        <meta property="og:image"              content="<?php the_post_thumbnail_url( 'awp-portrait-big' ); ?>" />
+        <meta property="og:image:type"         content="image/jpeg" />
+        <?php
+    endif;
+}
+
+/**
+ * Social pages
+*/
 function render_network_links() {
-    /**
-     * @desc: Função especializada em rendenizar os links das redes sociais cadastradas
-    */
 
     $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
     $pageID = $page_contato->ID;
@@ -59,6 +93,9 @@ function render_network_links() {
     <?php endif;
 }
 
+/**
+ * Social share buttons
+*/
 function render_social_share () {
     /**
      * @desc: Retornar os botões de compartilhamento
@@ -74,6 +111,18 @@ function render_social_share () {
         </i>
     </div>
     <?php 
+}
+
+/**
+ * Main menu
+*/
+function render_main_menu() {
+    $args = array(
+        'menu'      => 'awp-primary',
+        'menu_class'    => 'aside-menu',
+        'echo'          => true,
+    );
+    return wp_nav_menu( $args );
 }
 
 /**
@@ -103,18 +152,13 @@ function main_header() {
                     <?php the_custom_logo(); ?>
                 </div> <!-- /End logo -->
 
-                <div class="wrapper_menu col-6 col-xl-7">                    
+                <div class="wrapper_menu col-6 col-xl-9">                    
                     <?php
-                        $args_menu = array(
-                            'menu'      => 'awp-primary',
-                            'menu_class'    => 'main-menu',
-                            'echo'          => true,
-                        );
-                        wp_nav_menu( $args_menu );
+                        
                     ?>
                 </div> <!-- /End menu -->
                 
-                <div class="social-network col-xl-2">
+                <div class="social-network">
                     <?php render_network_links(); ?>
                 </div> <!-- /End social network -->
             </div>
@@ -125,12 +169,7 @@ function main_header() {
             <h2 class="title-menu">Menu</h2>
             <i id="close-aside-menu" class="fa fa-times"></i>                
             <?php
-                $args = array(
-                    'menu'      => 'awp-primary',
-                    'menu_class'    => 'aside-menu',
-                    'echo'          => true,
-                );
-                wp_nav_menu( $args );
+                render_main_menu();
             ?>
             <div class="mask"></div>
         </div> <!-- /End menu -->
@@ -186,6 +225,9 @@ function get_homepage() {
             </div>
             <a class="btn-contact" href="#contato">Entre em contato</a>
         </div>
+
+        <!-- Main menu -->
+        <?php render_main_menu(); ?>
     </div>
 
     <?php
@@ -230,8 +272,8 @@ function get_services() {
     if( $page_services ): 
     ?>
         <header class="container sct-header">
-            <h1 class="sct-title"><?php echo $pageTitle; ?></h1>
-            <p class="sct-subtitle"><?php echo $pageSubtitle; ?></p>
+            <h1 class="sct-title"><?php echo apply_filters( 'page_title', $pageTitle ); ?></h1>
+            <p class="sct-subtitle"><?php echo apply_filters( 'page_subtitle', $pageSubtitle ); ?></p>
         </header>
     <?php 
     else: 
@@ -250,7 +292,7 @@ function get_services() {
 
             $args_services = array(
                 'post_type'         => 'servicos',
-                'posts_per_page'    => 6,
+                'posts_per_page'    => 9,
                 'post_status'       => 'publish'
             );
 
@@ -366,17 +408,18 @@ function get_contato(){
     /**
      * get_contato() - Verifica se existe uma page contato e imprime ela na seção
     */
-    global $POST;
-    $page_contato = get_page_by_title( 'contato', OBJECT, 'page' );
+    $page_contato = get_page_by_title( 'Contato', OBJECT, 'page' );
 
     $pageID = $page_contato->ID;
-    $page_title = $page_contato->post_name;
-    $page_content = $page_contato->post_content;
+    $pageTitle = $page_contato->post_name;
+    $pageSubtitle = $page_contato->post_content;
 
-    if( $page_content ) :
-    ?>
-        <header class="header-contato" style="background-image: url()">
-        </header>
+    if( $page_contato ) : ?>
+
+    <header class="container sct-header">
+        <h1 class="sct-title"><?php echo apply_filters( 'page_title', $pageTitle ); ?></h1>
+        <p class="sct-subtitle"><?php echo apply_filters( 'page_subtitle', $pageSubtitle ); ?></p>
+    </header>
     <?php 
     else :
         if( is_user_logged_in() ) :

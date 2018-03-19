@@ -51,9 +51,10 @@ function toggleMenu (element) {
     let linkCloseDektop = $('.aside-menu a');
     let widthWindow = $(window).width();
 
-    // Mostrar o menu
+    // Se width > 480px
     if( widthWindow > 480) {
 
+        // Open Menu secundário desktop
         openMenu.on( 'click', function() {
             $('.secondary-menu').addClass('active-secondary-menu');
         });
@@ -127,7 +128,7 @@ $(document).on('click', 'a', function(event) {
 
 
 // Funções invocadas quando rolar a página
-if( $(window).width() > 480 ) {
+if( $(window).height() > 480 ) {
 
     $(document).scroll(function () {
         hideLogoRollPage();
@@ -143,68 +144,4 @@ $(window).scroll( function () {
 // Menu
 $('.menu-close').on('click', function () {
     toggleMenu($(this));
-})
-
-// Invocando Description do .portfolio-item
-$('.portfolio-item').hover( function () {
-    hoverDesc($(this));
-})
-
-/**
- * Add Slick slider desktop - portfolio
- * 
-*/
-// $('.slick-slider-homepage').slick({
-//     arrows: false,
-//     dots: true,
-//     fade: true,
-// });
-
-/**
- * Slick slider - galeria dos posts
-*/
-$('.gallery').slick({
-    dots: true,
-    arrows: false,
-    centerMode: true,
-    centerPadding: '60px'
-})
-
-/**
- * Slick slider mobile - portfolio
-*/
-$('.portfolio-wrap').slick({
-    dots: true,
-    arrows: false,
-    infinite: false,
-    speed: 300,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 3,
-          lazyLoad: 'ondemand',
-          infinite: true,
-          dots: true
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-      // You can unslick at a given breakpoint now by adding:
-      // settings: "unslick"
-      // instead of a settings object
-    ]
 });

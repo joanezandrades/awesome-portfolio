@@ -271,7 +271,7 @@ btnSubmitForm.on( 'click', function(event) {
         // Ajax
         $.ajax({
             type: 'POST', 
-            url: 'wp-content/themes/awesome-portfolio/libs/sendmail.php',
+            url: 'https://unitycode.tech/wp-content/themes/awesome-portfolio/libs/sendmail.php',
             async: true,
             data: urlData,
 

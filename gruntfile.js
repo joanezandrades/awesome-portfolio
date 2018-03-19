@@ -6,7 +6,7 @@ module.exports = function(grunt) {
 
         /* Limpa os arquivos */
         clean: {
-            css: ['libs/css/style-theme.css', 'libs/css/style-theme.min.css']
+            css: ['libs/css/style-theme.css', 'libs/css/style-theme.min.css']            
         },
 
         /* Compila .sass > .css */
@@ -42,16 +42,59 @@ module.exports = function(grunt) {
 
         /* Copy grunt */ 
         copy: {
-            
-            public: {
-
-                expand: true,
-                cwd: '**',
-                src: '**',
-                dest: 'awp-2.1'
+            main: {
+                files: [
+                    {
+                        expand: true,
+                        dot: false,
+                        compress: true,
+                        cwd: './',
+                        src: ['**.php', '**.css', '**.png', '**.json', '**.js'],
+                        dest: 'public/awp-v1.0.0/',
+                    },
+                    {
+                        expand: true,
+                        dot: false,
+                        compress: true,
+                        cwd: './inc',
+                        src: '**/*.php',
+                        dest: 'public/awp-v1.0.0/inc/',
+                    },            
+                    {
+                        expand: true,
+                        dot: false,
+                        compress: true,
+                        cwd: './libs',
+                        src: '**.php',
+                        dest: 'public/awp-v1.0.0/libs/',
+                    },
+                    {
+                        expand: true,
+                        dot: false,
+                        compress: true,
+                        cwd: './libs/css/',
+                        src: '**.css',
+                        dest: 'public/awp-v1.0.0/libs/css/',
+                    },
+                    {
+                        expand: true,
+                        dot: false,
+                        compress: true,
+                        cwd: './libs/js/',
+                        src: '**',
+                        dest: 'public/awp-v1.0.0/libs/js/',
+                    },
+                    {
+                        expand: true,
+                        dot: false,
+                        compress: true,
+                        cwd: './libs/PHPMailer_5.2.1',
+                        src: '**/*.php',
+                        dest: 'public/awp-v1.0.0/libs/PHPMailer_5.2.1/',
+                    }
+                ]
             }
         }
-        
     });
 
     /* Carregando os plugins */

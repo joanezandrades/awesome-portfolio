@@ -27,5 +27,8 @@
     "grunt-contrib-cssmin": "^2.2.0",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-copy": "^0.1.0"
+  },
+  "dependencies": {
+    "grunt-contrib-copy": "^1.0.0"
   }
 }

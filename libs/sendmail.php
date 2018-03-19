@@ -22,10 +22,10 @@ try {
 
 	$mail->IsSMTP();
 	$mail->SMTPAuth = true; 						//Habilita a autenticação SMTP
-	$mail->Port = 465; 								//Porta SMTP
-	$mail->Host = "smtp.joanezandrades.com"; 		//Servidor SMTP
-	$mail->Username = "bot@joanezandrades.com"; 	// Usuário SMTP
-	$mail->Password = "F[Iv=_h@iN=="; 				// Senha do username
+	$mail->Port = 587; 								//Porta SMTP
+	$mail->Host = "mx1.hostinger.com.br"; 			//Servidor SMTP
+	$mail->Username = "bot@unitycode.tech"; 		// Usuário SMTP
+	$mail->Password = "Dv@nBg|0bZ?^iC2@`p"; 		// Senha do username
 
 	$mail->IsSendmail();
 
@@ -33,7 +33,7 @@ try {
 	$mail->From = $email; 							//E-mail fornecido pelo cliente
 	$mail->FromName = $nome; 						//Nome Fornecido pelo cliente
 
-	$to = "helloworld@joanezandrades.com"; 			//Destinatário
+	$to = "box@unitycode.tech"; 					//Destinatário
 	$mail->AddAddress($to);
 	$mail->Subject = "E-mail via Website"; 			// Assunto
 	$mail->WordWrap = 80;

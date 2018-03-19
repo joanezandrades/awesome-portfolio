@@ -297,6 +297,7 @@
 			transition-timing-function: $trans-time-default
 			transition-duration: $trans-duration-default
 			transition-delay: $trans-delay-default
+
 	@media #{$information-desktop}
 		width: 70px
 		height: 200px
@@ -411,7 +412,7 @@
 // --------------------------------------------------------------
 .main-header
 	@media #{$information-phone}
-		background: $color-primary
+		background: none
 		height: 75px
 
 		top: 0
@@ -426,11 +427,12 @@
 		#open-menu,
 		#close-menu
 			font-size: $medium-title
-			color: $color-neuter
+			color: $color-primary
 
 			cursor: pointer
 			padding: 7px 10px
-			border: 1px solid $color-neuter
+			border: 1px solid $color-primary
+			border-radius: 3px
 
 			top: 15px
 			right: 15px
@@ -590,9 +592,9 @@
 					height: 40px
 					margin: 0 25px
 					
-					font-size: $small-tag
-					font-weight: $font-light
-					text-transform: uppercase
+					font-size: $medium-tag
+					font-weight: $font-bold
+					text-transform: lowercase
 					line-height: 3.2
 
 					position: relative
@@ -604,18 +606,23 @@
 
 					// - Link
 					a
-						color: $color-neuter
+						color: $color-text
 						letter-spacing: 3px
 
 
 		// -Social Network
 		.social-network
+			width: 150px
 			display: flex
 			align-items: center
 
+			top: 30px
+			right: 30px
+			position: absolute
+
 			.link-social
 				font-size: $small-text
-				color: $color-menu
+				color: $color-primary
 				margin: 0 auto
 
 		.active-menu
@@ -627,8 +634,63 @@
 // Menu secundário - escondido
 .secondary-menu
 	@media #{$information-phone}
-		display: none
+		width: 100%
+		height: 100%
 		
+		margin: 0 auto
+		top: -100%
+
+		.mask
+			opacity: 0
+
+		.title-menu,
+		#close-aside-menu
+			display: none
+
+		// Configs menu
+		.menu-awp-primary-container
+			width: 100%
+			height: 100%
+
+			.aside-menu
+				width: 100%
+				height: auto
+
+				margin-top: 100px
+
+				display: flex
+				flex-wrap: wrap
+				align-content: center
+
+				.menu-item
+					width: 100%
+					height: auto
+
+					padding: 15px 10px
+					margin: 10px auto
+
+					position: relative
+
+					&:after
+						content: ''
+						background: $color-neuter
+						width: 75px
+						height: 1px
+
+						opacity: .4
+						bottom: 0
+						left: 10px
+						position: absolute
+
+					a
+						font-size: $big-tag
+						font-weight: $font-regular
+						color: $color-neuter
+		
+		// Menu active
+		.menu-mobile-active
+			top: 0
+
 	@media #{$information-desktop}
 		background: $color-primary
 
@@ -784,6 +846,19 @@
 		overflow: hidden
 		position: relative
 
+		.bg-homepage
+			background-size: auto
+			background-repeat: no-repeat
+			background-attachment: fixed
+			background-position-x: 0
+			width: 100%
+			height: 100%
+
+			top: 0
+			left: 0
+			opacity: .35
+			position: absolute
+
 		.container-fluid
 			margin-top: 80px
 		
@@ -799,7 +874,7 @@
 
 			.half-page
 				width: 100%
-				height: 240px
+				height: auto
 
 				margin: auto
 				padding: 0 20px
@@ -808,96 +883,47 @@
 				flex-wrap: wrap
 
 				align-content: center
-				overflow: hidden
 
 				position: absolute
 
-				&:first-child					
-					top: 240px
-				&:nth-child(2)
-					top: 0
-
-				// Thumb
-				.attachment-full
+				.title
 					width: 100%
-					height: 100%
-					margin: auto
 
-				// Titulo do slider
-				.big-title
+					font-size: $medium-tag
+					font-weight: $font-regular
+					line-height: 1.6
+					color: $color-primary
+
+				.excerpt
 					width: 100%
 
 					font-size: $big-text
 					font-weight: $font-bold
-					text-align: center
-					line-height: 1.4
+					line-height: 1.6
 					color: $color-primary
 
-				// Resumo
-				.excerpt
-					width: 100%
-
-					font-size: $small-text
-					font-weight: $font-light
-					line-height: 1.6
-					color: $color-text-secondary
-
 					margin: 15px auto
-					display: none
 
-				// Botão saiba mais
-				.link-post
-					background: $color-neuter
+				.btn-contact
+					background: $color-primary
 
 					width: 175px
 					height: 50px
 
-					margin: 15px auto
-					border: 1px solid $color-border
-					border-radius: 3px
-
-					a
-						color: $color-primary
-						text-align: center
-						text-transform: uppercase
-						font-size: $medium-tag
-						font-weight: $font-bold
-						line-height: 3.3
-
-		.slick-dots
-			width: 280px
-			height: 45px
-
-			margin: 15px auto
-
-			display: flex
-			align-items: center
-			justify-content: center
-
-			li
-				background: none
-				width: 35px
-				height: 8px
-
-				margin: 0 10px
-
-				border: 1px solid none
-				overflow: hidden
-
-				button
-					background: $color-neuter
-					width: 100%
-					height: 100%
-
+					margin: 15px 0
 					border: none
+					border-radius: 5px
+
 					color: $color-neuter
+					text-align: center
+					text-transform: uppercase
+					font-size: $small-tag
+					font-weight: $font-bold
+					line-height: 3.7
 
-			.slick-active
-				border: none
-
-				button
-					background: $color-primary
-					color: $color-primary
+			// Main menu
+			.menu-awp-primary-container
+				display: none
 
 	@media #{$information-desktop}
 		background: $color-neuter
@@ -907,17 +933,6 @@
 		margin: 0
 		overflow: hidden
 		position: relative
-
-		&:before
-			// content: ''
-			background: $color-primary
-			width: 100%
-			height: 100%
-			top: 0
-			left: 0
-			opacity: .4
-			z-index: 1
-			position: absolute
 
 		.bg-homepage
 			background-size: 70%
@@ -991,7 +1006,58 @@
 					text-transform: uppercase
 					font-size: $small-tag
 					font-weight: $font-bold
-					line-height: 3.3
+					line-height: 3.7
+
+			// Main menu
+			.menu-awp-primary-container
+				width: 90px
+				height: auto
+
+				right: 30px
+				position: absolute
+
+				.aside-menu
+					width: 100%
+					height: 100%
+
+					margin: 0
+					padding: 0
+
+					display: flex
+					flex-wrap: wrap
+					align-content: center
+
+					.menu-item
+						width: 100%
+						height: auto
+						padding: 20px 0
+						margin: 15px auto
+
+						position: relative
+
+						&:before
+							content: ''
+							width: 20px
+							height: 2px
+
+							background: $color-text
+							left: -35px
+							top: calc(100% / 2 - 2px)
+							position: absolute
+
+						a
+							font-size: $small-tag
+							font-weight: $font-regular
+							color: $color-text
+							text-transform: uppercase
+
+							opacity: .8
+							transition: $transition-basic
+
+							&:hover
+								color: $color-primary
+								opacity: 1
+
 
 // --------------------------------------------------------------
 // # Serviços - section services
@@ -1035,7 +1101,19 @@
 				transition-duration: $trans-duration-default
 				transition-delay: $trans-delay-default
 
-				.wrap-thumb,
+				.wrap-thumb
+					background: $color-primary
+					width: 64px
+					height: 64px
+
+					border-radius: 100%
+					margin: 10px auto
+
+					// - icon
+					.wp-post-image
+						width: 100%
+						height: 100%
+
 				.wrap-infos
 					width: $defaultWidth
 					height: auto
@@ -1047,12 +1125,6 @@
 					text-align: center
 					border: none
 							
-					// - icon
-					.attachment-awp-icon
-						width: 64px
-						height: 64px
-						display: block
-						margin: 25px auto
 
 					// - title
 					.title-service
@@ -1162,6 +1234,7 @@
 					box-shadow: 0px 0px 5px $color-border
 
 					.wrap-thumb
+						background: $color-primary
 						width: 96px
 						height: 96px
 
@@ -1227,6 +1300,7 @@
 		height: auto
 		padding: 50px 0
 		overflow: hidden
+		display: none
 
 		.section-wrap
 			margin-top: 50px
@@ -1703,7 +1777,7 @@
 		background: $color-neuter
 		background-size: cover
 		width: 100%
-		height: calc(100vh - 70px)
+		height: 110vh
 		padding: 35px 0
 		position: relative
 
@@ -1772,7 +1846,7 @@
 					margin: auto 10px
 					
 		// Formulário e informações
-		.box-contact
+		.wrapper-contact
 			background: $color-neuter
 
 			width: 100%
@@ -1788,7 +1862,7 @@
 			transition: $transition-basic
 
 			// Formulário
-			.wrap-form
+			.wrapper-form
 				background: $color-neuter
 				width: 100%
 				height: 100%
@@ -1798,8 +1872,11 @@
 				left: 0
 				position: absolute
 
+				.head-form-desktop
+					display: none
+
 				// header form mobile
-				.head-form-mobile
+				.header-form-mobile
 					width: 100%
 					height: 60px
 
@@ -1810,8 +1887,8 @@
 					align-items: center
 					justify-content: space-between
 
-					// 
-					.contagem
+					//Count phases 
+					.wrap-count
 						height: 25px
 						width: 35px
 
@@ -1839,18 +1916,22 @@
 						.active-count
 							top: 0
 
-					.btn-close
-						display: flex
-						align-items: center
+				.btn-close
+					display: flex
+					align-items: center
 
-						.text
-							font-size: $small-tag
-							color: $color-text
-						
-						.icon
-							font-size: $medium-text
-							color: $color-text
-							margin-left: 8px
+					top: 17px
+					right: 15px
+					position: absolute
+
+					.text
+						font-size: $small-tag
+						color: $color-text
+					
+					.icon
+						font-size: $medium-text
+						color: $color-text
+						margin-left: 8px
 
 			// formulario
 			#formulario
@@ -1877,7 +1958,7 @@
 					// Header description
 					.description-for-mob-app
 						width: 100%
-						height: 150px
+						height: 110px
 						margin: 5px auto
 
 						display: flex
@@ -1897,7 +1978,7 @@
 					// Wrap-input
 					.wrap-input
 						height: 80px
-						margin: 15px auto
+						margin: 10px auto
 
 						padding: 0 0
 
@@ -1943,6 +2024,9 @@
 				.phase-three
 					left: 100%
 					transition: $transition-basic
+
+				.phase-two
+					overflow-y: auto
 
 				// Active fases do formulário
 				.active-phase
@@ -2026,7 +2110,7 @@
 						.bold
 							font-weight: $font-bold
 
-		.wrap-contact
+		.wrap-contact-infos
 			display: none
 
 		// Active app formulário
@@ -2038,14 +2122,24 @@
 		.mobile-social
 			background: $color-secondary
 			width: 100%
-			height: 90px
+			height: 70px
+
+			display: flex
+			align-content: center
+			align-items: center
+			justify-content: space-around
 
 			bottom: 0
 			left: 0
 			position: absolute
 
+			.link-social
+				font-size: $big-text
+				color: $color-neuter
+
+
 	@media #{$information-desktop}
-		background: $color-neuter
+		background: #f7f9fa
 		background-size: cover
 		width: 100%
 		min-height: 100vh
@@ -2053,15 +2147,8 @@
 
 		/*	Header contato
 			-> Referente ao header da seção */
-		.header-contato
-			background-repeat: no-repeat
-			background-size: 100%
-			background-attachment: fixed
-
-			width: 100%
-			height: 440px
-
-			position: relative
+		.sct-header
+			display: none
 
 			.sct-title
 				background: $color-primary
@@ -2090,10 +2177,15 @@
 				top: 110px
 				position: relative
 
+
+		// Botões mobile
+		.botoes-mobile,
+		.mobile-social
+			display: none
 		/*	Box wrapper 
 			-> Box que embrulha o formulário de contato */
 		.wrapper-contact
-			background: $color-neuter
+			background: #f7f9fa
 			height: 610px
 			padding: 15px 25px
 			border-radius: 5px
@@ -2126,7 +2218,7 @@
 			
 			/* 	Header formulário
 				-> Header do formulário, dentro dele estão conteúdos
-				   para desktop e mobile */
+					para desktop e mobile */
 			.header-formulario
 				width: 100%
 				height: 80px

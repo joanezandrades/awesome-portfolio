@@ -18,11 +18,7 @@
         <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500,900|Roboto:300,400,900" rel="stylesheet">
 
         <!-- Open Graph	- SEO Facebook -->
-        <meta property="og:locale" content="pt_BR"> <!-- /Localização e linguagem -->
-        <meta property="og:url" content="<?php site_url() ?>"> <!-- /Url do site -->
-        <meta property="og:site_name" content="<?= make_title(); ?>"> <!-- /Nome do Site/Página -->
-        <meta property="og:description" content="<?php bloginfo('description') ?>"> <!-- /Descrição -->
-        <meta property="og:type" content="website"> <!-- /Tipo da aplicação -->
+        <?php og_tags(); ?>
         
         <?php
             load_style_scripts();
