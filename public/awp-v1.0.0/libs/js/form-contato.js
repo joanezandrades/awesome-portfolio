@@ -247,55 +247,49 @@ function showBtnSendMobile (){
 }) ();
 
 /**
- * Reseta os campos do formulário
-*/
-function resetInputs(){
-
-    iptName.val('');
-    iptEmail.val('');
-    iptJob.val('');
-    iptDate.val('');
-    iptBudget.val('');
-    iptMsg.val('');
-}
-
-/**
  * Envio e-mail com AJAX + PHP
 */
 btnSubmitForm.on( 'click', function(event) {
 
+    // Testando os campos obrigatórios
+    if( regExpName( iptName.val() ) || regExpEmail( iptEmail.val() ) ){
+        
+        // Completa a mensagem de sucesso com os dados do usuário
+        $('.append-name').append( iptName.val() );
+        $('.append-email').append( iptEmail.val() );
+        $('.append-deadline').append( iptDate.val() );
+        $('.append-budget').append( iptBudget.val() );
 
-    // Completa a mensagem de sucesso com os dados do usuário
-    $('.append-name').append( iptName.val() );
-    $('.append-email').append( iptEmail.val() );
-    $('.append-deadline').append( iptDate.val() );
-    $('.append-budget').append( iptBudget.val() );
+        // Construção da url
+        let urlData =   '&name=' + iptName.val() + 
+                        '&email=' + iptEmail.val() +
+                        '&job=' + iptJob.val() + 
+                        '&date=' + iptDate.val() + 
+                        '&budget=' + iptBudget.val() + 
+                        '&message=' + iptMsg.val();
+        
+        // Ajax
+        $.ajax({
+            type: 'POST', 
+            url: 'https://unitycode.tech/wp-content/themes/awesome-portfolio/libs/sendmail.php',
+            async: true,
+            data: urlData,
 
-    // Construção da url
-    let urlData =   '&name=' + iptName.val() + 
-                    '&email=' + iptEmail.val() +
-                    '&job=' + iptJob.val() + 
-                    '&date=' + iptDate.val() + 
-                    '&budget=' + iptBudget.val() + 
-                    '&message=' + iptMsg.val();
-    
-    // Ajax
-    $.ajax({
-        type: 'POST', 
-        url: 'wp-content/themes/awesome-portfolio/libs/sendmail.php',
-        async: true,
-        data: urlData,
+            success: function(data) {
 
-        success: function(data) {
-
-            $('.form').css({ 'display' : 'none' });
-            $('.box-success-message').css({ 'display' : 'block' });
-
-            // Reset inputs
-            resetInputs();
-            console.log(data)
-        }
-    })
+                $('.form').css({ 'display' : 'none' });
+                $('.box-success-message').css({ 'display' : 'block' });
+                console.log(data)
+            }
+        })
+        event.preventDefault();
+    } else {
+        return false;
+    }
+    // regExpName( iptName.val() );
+    // regExpEmail( iptEmail.val() );
+    // regExpTypeJob( iptJob.val() );
+    // regExpMsg( iptMsg.val() );
 
     event.preventDefault();
     console.log( urlData );

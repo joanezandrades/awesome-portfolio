@@ -1,0 +1,1 @@
+@keyframes rotateFull{from{transform:rotate(45deg)}to{transform:rotate(360deg)}}@keyframes rollPageEffect{from{top:100%}to{top:-100%}}@keyframes toTop{from{margin-bottom:0}to{margin-bottom:100%}}@keyframes enterBottom{from{bottom:-100%}to{bottom:0}}@keyframes bounceDown{from{margin-top:0;opacity:1}to{margin-top:25px;opacity:.2}}

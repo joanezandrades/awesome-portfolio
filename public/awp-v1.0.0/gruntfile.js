@@ -70,7 +70,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     /* Registrar tarefas */
-    grunt.registerTask( 'default', ['clean:css', 'sass', 'cssmin'] ); // Limpa arquivos Css, compila css>sass e minifica o css
-    grunt.registerTask( 'publicwork', ['clean:public', 'copy'] ); // Limpa o diretório 'public' e gera uma nova copia
+    grunt.registerTask( 'default', ['clean:css', 'sass', 'cssmin'] );
+    grunt.registerTask( 'publicwork', ['clean:public', 'copy'] );
 
 }

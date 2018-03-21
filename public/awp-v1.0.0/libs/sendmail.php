@@ -3,12 +3,9 @@
 require_once('PHPMailer_5.2.1/class.phpmailer.php');
 
 // Recebe os dados do cliente Ajax via POST
-$nome 	= 	$_POST['nome'];
-$email 	=	$_POST['email'];
-$job	= 	$_POST['job'];
-$date 	= 	$_POST['date'];
-$budget	= 	$_POST['budget']
-$msg 	= 	$_POST['texto'];
+$nome = 	$_POST['nome'];
+$email =	$_POST['email'];
+$msg = 		$_POST['texto'];
 
 try {
 	$mail = new PHPMailer(true);
@@ -17,9 +14,6 @@ try {
 	$body .= "<h2>Contato via Website</h2>";
 	$body .= "Nome: $nome </br>";
 	$body .= "E-mail: $email </br>";
-	$body .= "Job: $job </br>";
-	$body .= "Prazo: $date </br>";
-	$body .= "Budget: $budget </br>";
 	$body .= "Texto: </br>";
 	$body .= $msg;
 	$body .= "<br>";
